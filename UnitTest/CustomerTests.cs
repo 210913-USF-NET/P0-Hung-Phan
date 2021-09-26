@@ -9,7 +9,7 @@ public class CustomerTests{
     public void Test_CreateCustomer(){
 
         CCustomer c1 = new CCustomer("Hung", "hungp", "password123");
-
+// blah blah blah
         Assert.NotNull(c1);
         // Add the add customer logic here to test this is adding a customer in theory
     }
