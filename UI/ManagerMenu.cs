@@ -44,6 +44,7 @@ namespace UI
 
                     case "3":
                     Console.WriteLine("Exiting Window.");
+                    new MainMenu().Start();
                     exit = true;
                     break;
 

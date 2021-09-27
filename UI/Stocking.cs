@@ -27,7 +27,7 @@ namespace UI
 
                 Console.WriteLine("");
                 Console.WriteLine("Current Inventory Quantity:");
-                Console.WriteLine($"1.{restock[0].ProductName}. Product ID: {restock[0].ProductId} -------------------------------- In-Store  QTY: {restock[0].Stock}");
+                Console.WriteLine($"1.{restock[0].ProductName} Product ID: {restock[0].ProductId} -------------------------------- In-Store  QTY: {restock[0].Stock}");
                 Console.WriteLine($"2.{restock[10].ProductName} Product ID: {restock[10].ProductId}-------------------------------- Online    QTY: {restock[11].Stock}");
                 Console.WriteLine($"3.{restock[1].ProductName} --------------------------------- In-Store  QTY: {restock[1].Stock}");
                 Console.WriteLine($"4.{restock[11].ProductName} --------------------------------- Online    QTY: {restock[11].Stock}");
@@ -79,21 +79,25 @@ namespace UI
             List<CProduct> restock = _product.ListProducts();
             Console.WriteLine("");
             Console.Write("Please entered the Product ID:");
-            int id = int.Parse(Console.ReadLine())-1;
-            Console.Write("Please entered the amount of the new amount of stock :");
-            int stockAmount = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine());
 
-            var stockProductId = restock[id].ProductId;
-            var stockProductName = restock[id].ProductName;
-            var stockProductDescription = restock[id].ProductDescription;
-            var stockPrice = restock[id].Price;
-            var stockProductInventoryLocation = restock[id].InventoryLocation;
-            var stockProductStock = stockAmount;
-            var stockProductCategory = restock[id].Category;
-            
-            Models.CProduct stockCount = new Models.CProduct
-            (stockProductId, stockProductName, stockProductDescription, stockPrice, stockProductInventoryLocation, stockProductStock, stockProductCategory);
-            _product.changeStock(stockCount);
+            if(id < 11 && id > 0){
+                id -= 1;
+            }else if(id < 116 && id > 100)
+            {
+                id -= 91;
+            }else 
+            {
+                Console.WriteLine("\nPlease Enter Valid Product ID.\n");
+                new MainMenu().Start();
+            }
+
+            Console.Write("Please entered the amount of the new amount of stock :");
+            int amount = int.Parse(Console.ReadLine());
+
+            Models.CProduct stockCount = new Models.CProduct(amount);
+            _product.changeStock(stockCount, amount);
+            Console.WriteLine($"\nNew stock count for {restock[id].ProductName} is {restock[id].Stock}.");
         }
     }
 }

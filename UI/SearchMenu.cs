@@ -40,6 +40,7 @@ namespace UI
 
                     case "2":
                     exit = true;
+                    new MainMenu().Start();
                     break;
 
                     default:
@@ -74,22 +75,19 @@ namespace UI
             }
             return match;
         }
-/*
-        private void OrderHistory()
+
+/*        private void OrderHistory()
         {
-            var name;
-            var IDOrder;
             Console.WriteLine("\nPlease enter in your Order ID.");
             Console.Write("OrderID #: ");
             enteredID = Console.ReadLine();
-            IDOrder =enteredID;
             List<Order> history = _customer.OrderHistory();
 
-            foreach(var user in customerHi){
-                if(user.CustomerName == UserName ){
-                    Console.WriteLine(history.ToString());
+            foreach(var order in history)
+                if(order.OrderID == enteredID)
+                {
+                    Console.WriteLine($"{history[order].ProductID}            QTY: {history[order].QTY} at {history[order].Cost} for a Total of {history[order].Total}. Order was made for {history[order].Location}.")
                 }
-            }
         }*/
     }
 }

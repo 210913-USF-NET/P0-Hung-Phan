@@ -87,6 +87,7 @@ namespace UI
                         switch(Console.ReadLine())
                         {
                             case "1":
+                                fullCart = 0;
                                 Console.WriteLine($@"{addToCart[0].ProductName}: {addToCart[0].ProductDescription}");
                                 Console.WriteLine("\nInventory:");
                                 Console.WriteLine($@"In-Store: {addToCart[0].Stock}   Online: {addToCart[10].Stock}");

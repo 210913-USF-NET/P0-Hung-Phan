@@ -45,6 +45,7 @@ namespace UI
 
                     case "3": // Makes exit true and thanks them to visiting
                         Console.WriteLine("Thank you for visit, hope to see you again soon!");
+                        new MainMenu().Start();
                         exit = true;
                         break;
 

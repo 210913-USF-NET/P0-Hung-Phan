@@ -8,6 +8,6 @@ namespace StoreBL
     {
         List<CProduct> ListProducts();
 
-        void changeStock(CProduct stockCount);
+        void changeStock(CProduct stockCount, int amount);
     }
 }

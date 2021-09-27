@@ -10,7 +10,7 @@ namespace StoreDL
         List<CCustomer> GetAllCustomer();
 
         List<CProduct> ListProducts();
-        CProduct changeStock(CProduct stockCount);
+        void changeStock(CProduct stockCount, int amount);
 
         List<Order> OrderHistory();
     }

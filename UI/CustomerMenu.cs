@@ -55,6 +55,7 @@ namespace UI
 
                     case "3":
                         Console.WriteLine("Thank you for visit, hope to see you again soon!");
+                        new MainMenu().Start();
                         exit = true;
                         break;
 
@@ -76,8 +77,8 @@ namespace UI
 
             foreach(var user in validAccount){
                 if(user.Username == newUser){
-                    Console.WriteLine("This username already exists.");
-                    AddCustomer();
+                    Console.WriteLine("This username already exists. Please come back when you think of a new password.");
+                    new MainMenu().Start();
                 }
             }
 
@@ -87,7 +88,7 @@ namespace UI
 
             Models.CCustomer customer = new Models.CCustomer(cName, newUser, newPassword);
             _customer.AddCustomer(customer);
-            Console.WriteLine($"\nWelcome, {customer.ToString()}. Your Account ID is {customer.CustomerId}");
+            Console.WriteLine($"\nWelcome, {customer.ToString()}");
         
         }
 

@@ -71,29 +71,16 @@ namespace StoreDL
             ).ToList();
         }
 
-        public Model.CProduct changeStock(Model.CProduct stockCount)
+        public void changeStock(Model.CProduct stockCount,int amount)
         {
-            Entity.Product newStockCount = new Entity.Product()
-            {
-                    Stock = stockCount.Stock,
-            };
+            Entity.Product newCount = (from s in _context.Products 
+                where s.ProductId == stockCount.ProductId
+                select s).SingleOrDefault();
 
-            newStockCount = _context.Update(newStockCount).Entity;
-
+            newCount.Stock = amount;
+            _context.Update(stockCount);
             _context.SaveChanges();
-
             _context.ChangeTracker.Clear();
-
-            return new Model.CProduct()
-            {
-                    ProductId = newStockCount.ProductId,
-                    ProductName = newStockCount.ProductName,
-                    ProductDescription = newStockCount.ProductDescription,
-                    Price = newStockCount.Price,
-                    InventoryLocation = newStockCount.InventoryLocation,
-                    Stock = newStockCount.Stock,
-                    Category = newStockCount.Category
-            };
         } 
 
         public List<Model.Order> OrderHistory()
