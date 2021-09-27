@@ -56,6 +56,7 @@ namespace UI
             {
                 case "1":
                 if(!shoppingCart.ContainsKey(addToCart[0]) && !shoppingCart.ContainsKey(addToCart[10])){
+                    int fullCart0 = 0;
                     Console.WriteLine($@"{addToCart[0].ProductName}: {addToCart[0].ProductDescription}");
                     Console.WriteLine("\nInventory:");
                     Console.WriteLine($@"In-Store: {addToCart[0].Stock}   Online: {addToCart[10].Stock}");
@@ -64,9 +65,9 @@ namespace UI
                     int storeCart0 = int.Parse(Console.ReadLine());
                     Console.Write("Online: ");
                     int onlineCart0 = int.Parse(Console.ReadLine());
-
+                    if(storeCart0 > addToCart[0].Stock || onlineCart0 > addToCart[10].Stock)
                     //TODO: add if statement to check if stock is available based on number in cart
-                    int fullCart0 = storeCart0 + onlineCart0;
+                    fullCart0 = storeCart0 + onlineCart0;
                     fullCart += fullCart0;
                     Console.WriteLine($"{fullCart0} items have been added to your cart.");
                     // this statement is add the items in cart to what currently exists

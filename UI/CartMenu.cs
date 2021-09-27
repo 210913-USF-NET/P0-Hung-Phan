@@ -14,10 +14,6 @@ namespace UI
 {
   public partial class CartMenu : IMenu
     {
-/*    public invoice()
-    {
-        LineItem[] lines = new LineItem[Product];
-    }*/
     public void Start()
     {
         Console.WriteLine("How the fuck do I do this?");
