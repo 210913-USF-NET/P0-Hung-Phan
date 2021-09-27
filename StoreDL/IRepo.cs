@@ -10,6 +10,8 @@ namespace StoreDL
         List<CCustomer> GetAllCustomer();
 
         List<CProduct> ListProducts();
-        CProduct cartProduct(CProduct product);
+        CProduct changeStock(CProduct stockCount);
+
+
     }
 }

@@ -20,9 +20,9 @@ namespace StoreBL
             return _repo.ListProducts();
         }
 
-        public void cartProduct(CProduct product)
+        public void changeStock(CProduct stockCount)
         {
-            _repo.cartProduct(product);
+            _repo.changeStock(stockCount);
         }
     }
 }

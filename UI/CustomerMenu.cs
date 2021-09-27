@@ -76,12 +76,10 @@ namespace UI
 
             foreach(var user in validAccount){
                 if(user.Username == newUser){
-                    Console.WriteLine("This username already exists. Please enter another one:");
-                    newUser = Console.ReadLine();
+                    Console.WriteLine("This username already exists.");
+                    AddCustomer();
                 }
             }
-
-            // TODO: Could use if out here if the foreach is not working
 
             Console.Write("Please make a password: ");
             string newPassword = Console.ReadLine();

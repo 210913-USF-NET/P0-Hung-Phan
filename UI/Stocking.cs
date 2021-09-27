@@ -60,10 +60,8 @@ namespace UI
                 switch(Console.ReadLine())
                 {
                     case "1":
-                        Console.WriteLine("");
-                        Console.Write("Please entered the amount of the new amount of stock :");
-                        restock[0].Stock = int.Parse(Console.ReadLine());
-
+                        restock[0].ProductId = 1;
+                        changeStock();
                         // TODO: Call DB to update the product 
                         
 
@@ -71,18 +69,20 @@ namespace UI
                         break;
 
                     default:
-                        Console.WriteLine("Prom,duct was not found.");
+                        Console.WriteLine("Product was not found.");
                         break;
                 }
             } while (!exit);
         }
-/*        private void restocking()
-        {
-            Console.Write("Please entered the amount of the new amount of stock :");
-            restock[0].Stock = int.Parse(Console.ReadLine());
 
-            Models.CProduct replenish = new Models.CProduct(newCount);
-            _product.restocking(newCount);
-        }*/
+        private void changeStock()
+        {
+            Console.WriteLine("");
+            Console.Write("Please entered the amount of the new amount of stock :");
+            int restock = int.Parse(Console.ReadLine());
+
+            Models.CProduct product = new Models.CProduct(restock);
+            _product.changeStock(product);
+        }
     }
 }
