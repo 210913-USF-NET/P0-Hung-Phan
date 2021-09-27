@@ -87,7 +87,7 @@ namespace UI
 
             Models.CCustomer customer = new Models.CCustomer(cName, newUser, newPassword);
             _customer.AddCustomer(customer);
-            Console.WriteLine($"\nWelcome, {customer.ToString()}.");
+            Console.WriteLine($"\nWelcome, {customer.ToString()}. Your Account ID is {customer.CustomerId}");
         
         }
 

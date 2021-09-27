@@ -9,5 +9,7 @@ namespace StoreBL
         void AddCustomer(CCustomer customer);
 
         List<CCustomer> GetAllCustomer();
+
+        List<Order> OrderHistory();
     }
 }

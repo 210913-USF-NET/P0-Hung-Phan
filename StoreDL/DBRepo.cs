@@ -56,31 +56,6 @@ namespace StoreDL
             ).ToList();
         }
 
-        public Model.CProduct cartProduct(Model.CProduct product)
-        {
-            Entity.Product wantedProduct = new Entity.Product()
-            {
-                    ProductId = product.ProductId,
-                    ProductName = product.ProductName,
-                    ProductDescription = product.ProductDescription,
-                    Price = product.Price,
-                    InventoryLocation = product.InventoryLocation,
-                    Stock = product.Stock,
-                    Category = product.Category
-            };
-
-            wantedProduct = _context.Add(wantedProduct).Entity;
-
-            return new Model.CProduct()
-            {
-                ProductId = product.ProductId,
-                ProductName = product.ProductName,
-                Price = product.Price,
-                Stock = product.Stock,
-            };
-        }
-
-
         public List<Model.CProduct> ListProducts()
         {
             return _context.Products.Select(
@@ -103,7 +78,7 @@ namespace StoreDL
                     Stock = stockCount.Stock,
             };
 
-            newStockCount = _context.Add(newStockCount).Entity;
+            newStockCount = _context.Update(newStockCount).Entity;
 
             _context.SaveChanges();
 
@@ -119,6 +94,22 @@ namespace StoreDL
                     Stock = newStockCount.Stock,
                     Category = newStockCount.Category
             };
-        }      
+        } 
+
+        public List<Model.Order> OrderHistory()
+        {
+            return _context.OrderDetails.Select(
+                orders => new Model.Order()
+                {
+                    OrderID = orders.OrderId,
+                    ProductID = orders.ProductId,
+                    QTY = orders.ProductQty,
+                    Cost = orders.PriceOfProduct,
+                    Location = orders.StoreLocation,
+                    Total = orders.Total,
+                    customerID = orders.Customer_Id
+                }
+            ).ToList();
+        }
     }
 }

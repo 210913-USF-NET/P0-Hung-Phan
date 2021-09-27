@@ -53,7 +53,7 @@ namespace UI
                         break;
                     
                     case "3":
-                        new SearchMenu().Start();
+                        new SearchMenu(new CustomerBL(new DBRepo(context))).Start();
                         break;
 
                     case "4": // Makes exit true and thanks them to visiting

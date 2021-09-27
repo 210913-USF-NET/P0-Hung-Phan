@@ -1,12 +1,23 @@
 using System;
+using Models;
+using StoreBL;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using StoreDL;
+using StoreDL.Entities;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
+using System.IO;
 
 namespace UI
 {
-    public class SearchMenu
+    public class SearchMenu :IMenu
     {
+        private ICustomerBL _customer;
+
+        public SearchMenu(ICustomerBL customer)
+        {
+            _customer = customer;
+        }
         public void Start()
         {
             bool exit = false;
@@ -14,23 +25,20 @@ namespace UI
                 Console.WriteLine("How would you like to find your Order? ");
                 Console.WriteLine("=======================================");
                 Console.WriteLine(" 1. Search through Customer Account.");
-                Console.WriteLine(" 2. Search through Order Number");
-                Console.WriteLine(" 3. Exit.");
+                Console.WriteLine(" 2. Exit.");
                 Console.WriteLine("=======================================");
 
                 switch(Console.ReadLine())
                 {
                     case "1":
-                    Console.WriteLine("Can't even find how im going to find this project.");
-                    Console.WriteLine(" 1. Search through Customer Account.");
+                    if(matchAccount())
+                    {
+                    //new OrderHistory();
+                    Console.WriteLine("come back when cart is done.");
+                    }
                     break;
 
                     case "2":
-                    Console.WriteLine("Can't even find how im going to find this project.");
-                    Console.WriteLine(" 2. Search through Order Number");
-                    break;
-
-                    case "3":
                     exit = true;
                     break;
 
@@ -40,5 +48,48 @@ namespace UI
                 } 
             }while (!exit);
         }
+
+        private bool matchAccount()
+        {
+            bool match = false;
+            string enteredUser;
+            string enteredPassword;
+            List<CCustomer> validAccount = _customer.GetAllCustomer();
+
+            Console.WriteLine("\nPlease enter in your account information.");
+            Console.Write("User: ");
+            enteredUser = Console.ReadLine();
+            Console.Write("Password: ");
+            enteredPassword = Console.ReadLine();
+            for( int u = 0; u <validAccount.Count; u++){
+                if(enteredUser == validAccount[u].Username && enteredPassword == validAccount[u].CPassword){
+                Console.WriteLine($@"Welcome {validAccount[u].CustomerName}.");
+                Console.WriteLine("");
+                    match = true;
+                }
+            }if(match == false){
+                Console.WriteLine("\nUsername or Password are incorrect. Please try again.");
+            }else {
+                Console.WriteLine("Where would you like to shop?");
+            }
+            return match;
+        }
+/*
+        private void OrderHistory()
+        {
+            var name;
+            var IDOrder;
+            Console.WriteLine("\nPlease enter in your Order ID.");
+            Console.Write("OrderID #: ");
+            enteredID = Console.ReadLine();
+            IDOrder =enteredID;
+            List<Order> history = _customer.OrderHistory();
+
+            foreach(var user in customerHi){
+                if(user.CustomerName == UserName ){
+                    Console.WriteLine(history.ToString());
+                }
+            }
+        }*/
     }
 }

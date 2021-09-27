@@ -24,5 +24,10 @@ namespace StoreBL
         {
             _repo.AddCustomer(customer);
         }
+
+        public List<Order> OrderHistory()
+        {
+            return _repo.OrderHistory();
+        }
     }
 }

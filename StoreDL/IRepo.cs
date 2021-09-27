@@ -12,6 +12,6 @@ namespace StoreDL
         List<CProduct> ListProducts();
         CProduct changeStock(CProduct stockCount);
 
-
+        List<Order> OrderHistory();
     }
 }

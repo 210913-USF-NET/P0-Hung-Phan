@@ -9,7 +9,7 @@ namespace Models
 
         public string Address { get; set; }
 
-        public List<Inventory> Inventories {get; set;}
+        public List<CProduct> Inventories {get; set;}
 
         public override string ToString() 
         {
