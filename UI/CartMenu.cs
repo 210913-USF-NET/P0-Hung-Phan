@@ -17,10 +17,10 @@ namespace UI
     public void Start()
     {
         Console.WriteLine("How the fuck do I do this?");
+
     }
 
-    public void AddCartToDB(Dictionary<CProduct, int> shoppingCart){
-        
-    }
+//    public void AddCartToDB(Dictionary<CProduct, int> shoppingCart){        
+//    }
     }
 }

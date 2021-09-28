@@ -27,11 +27,11 @@ namespace UI
 
             foreach(var y in restock)
             {
-                Console.WriteLine($"The current Stock for {y.ProductName}, (ID: {y.ProductId}) is QTY: {y.Stock}");
+                Console.WriteLine($"The current Stock for {y.ProductName},        (ID: {y.ProductId})               is QTY:{y.Stock}, Location: {y.InventoryLocation}");
             }
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine("1. Update stock inventory.");
-                Console.WriteLine("2.Exit.");                
+                Console.WriteLine("2. Exit.");                
 
             do
             {
@@ -39,10 +39,10 @@ namespace UI
                 {
                     case "1":
                         changeStock();
-                        // TODO: Call DB to update the product 
-                        
+                        break;
 
-                        exit = true;
+                    case "2":
+                        new ManagerMenu().Start();
                         break;
 
                     default:

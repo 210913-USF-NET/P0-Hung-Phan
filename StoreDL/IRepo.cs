@@ -12,6 +12,11 @@ namespace StoreDL
         List<CProduct> ListProducts();
         Models.CProduct changeStock(CProduct stockCount);
 
+        List<LineItems> LinesOfItems();
+        LineItems createLineItem(LineItems item);
+
         List<Order> OrderHistory();
+
+
     }
 }

@@ -9,5 +9,9 @@ namespace StoreBL
         List<CProduct> ListProducts();
 
         Models.CProduct changeStock(CProduct stockCount);
+
+        List<LineItems> LinesOfItems();
+
+        void createLineItem(LineItems item);
     }
 }

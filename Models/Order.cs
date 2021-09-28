@@ -12,7 +12,7 @@ namespace Models
 
         }
 
-        public Order(string o_ID, int id, decimal cost, int qty, string location , decimal total, int customerID) 
+        public Order(int o_ID, int id, decimal cost, int qty, string location , decimal total, int customerID) 
         {
             this.OrderID = o_ID;
             this.ProductID = id;
@@ -23,7 +23,7 @@ namespace Models
             this.customerID = customerID;
         }
 
-        public string OrderID {get; set;}
+        public int OrderID {get; set;}
         public int ProductID {get; set;}
         public int QTY {get; set;}
         public decimal Cost {get; set;}

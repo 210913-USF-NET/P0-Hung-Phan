@@ -25,7 +25,7 @@ namespace UI
                 Console.WriteLine("  What would you like to do? ");
                 Console.WriteLine("=============================");
                 Console.WriteLine(" 1. View list of Stores.");
-                Console.WriteLine(" 2. Restock.");
+                Console.WriteLine(" 2. View/Edit Inventory.");
                 Console.WriteLine(" 3. Exit.");
                 Console.WriteLine("=============================");
 

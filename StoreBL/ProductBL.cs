@@ -24,5 +24,15 @@ namespace StoreBL
         {
             return _repo.changeStock(stockCount);
         }
+
+        public List<LineItems> LinesOfItems()
+        {
+            return _repo.LinesOfItems();
+        }
+
+        public void createLineItem(LineItems item)
+        {
+            _repo.createLineItem(item);
+        }
     }
 }

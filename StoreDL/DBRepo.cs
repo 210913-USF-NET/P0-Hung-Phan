@@ -54,7 +54,7 @@ namespace StoreDL
                     CPassword = customer.CPassword
                 }
             ).ToList();
-        }
+        } 
 
         public List<Model.CProduct> ListProducts()
         {
@@ -85,7 +85,44 @@ namespace StoreDL
             return new Model.CProduct(){
                 Stock = stockCount.Stock
             };
-            }
+        }
+
+        public List<Model.LineItems> LinesOfItems()
+        {
+            return _context.Products.Select(
+                items => new Model.LineItems(){
+                    ProductId = items.ProductId
+                }
+            ).ToList();
+        }
+
+        public Model.LineItems createLineItem(Model.LineItems item)
+        {
+            Entity.OrderDetail lines = new Entity.OrderDetail()
+            {
+                OrderId = item.OrderId,
+                ProductId = item.ProductId,
+                ProductQty = item.ProductQty,
+                PriceOfProduct = item.PriceOfProduct,
+                StoreLocation = item.StoreLocation,
+                Total = item.Total,
+                CustomerId = item.CustomerId
+            };
+
+            lines = _context.Add(lines).Entity;
+            _context.SaveChanges();
+
+            return new Model.LineItems()
+            {
+                OrderId = lines.OrderId,
+                ProductId = lines.ProductId,
+                ProductQty = lines.ProductQty,
+                PriceOfProduct = lines.PriceOfProduct,
+                StoreLocation = lines.StoreLocation,
+                Total = lines.Total,
+                CustomerId = lines.CustomerId
+            };
+        }
 
         public List<Model.Order> OrderHistory()
         {
