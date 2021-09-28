@@ -71,17 +71,21 @@ namespace StoreDL
             ).ToList();
         }
 
-        public void changeStock(Model.CProduct stockCount,int amount)
+        public Model.CProduct changeStock(Model.CProduct stockCount)
         {
             Entity.Product newCount = (from s in _context.Products 
                 where s.ProductId == stockCount.ProductId
                 select s).SingleOrDefault();
+                Console.WriteLine(newCount);
 
-            newCount.Stock = amount;
-            _context.Update(stockCount);
+            newCount.Stock = stockCount.Stock;
             _context.SaveChanges();
             _context.ChangeTracker.Clear();
-        } 
+
+            return new Model.CProduct(){
+                Stock = stockCount.Stock
+            };
+            }
 
         public List<Model.Order> OrderHistory()
         {
@@ -93,8 +97,7 @@ namespace StoreDL
                     QTY = orders.ProductQty,
                     Cost = orders.PriceOfProduct,
                     Location = orders.StoreLocation,
-                    Total = orders.Total,
-                    customerID = orders.Customer_Id
+                    Total = orders.Total
                 }
             ).ToList();
         }

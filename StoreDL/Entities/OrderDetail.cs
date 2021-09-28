@@ -14,8 +14,9 @@ namespace StoreDL.Entities
         public int PriceOfProduct { get; set; }
         public string StoreLocation { get; set; }
         public decimal Total { get; set; }
-        public int Customer_Id {get; set;}
+        public int CustomerId { get; set; }
 
+        public virtual Customer Customer { get; set; }
         public virtual Product Product { get; set; }
     }
 }

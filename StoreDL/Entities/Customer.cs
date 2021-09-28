@@ -9,7 +9,7 @@ namespace StoreDL.Entities
     {
         public Customer()
         {
-            OrderHistories = new HashSet<OrderHistory>();
+            OrderDetails = new HashSet<OrderDetail>();
         }
 
         public int CustomerId { get; set; }
@@ -17,6 +17,6 @@ namespace StoreDL.Entities
         public string Username { get; set; }
         public string CPassword { get; set; }
 
-        public virtual ICollection<OrderHistory> OrderHistories { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

@@ -19,7 +19,6 @@ namespace StoreDL.Entities
 
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
-        public virtual DbSet<OrderHistory> OrderHistories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -57,6 +56,8 @@ namespace StoreDL.Entities
 
                 entity.Property(e => e.OrderDetailsId).HasColumnName("Order_Details_ID");
 
+                entity.Property(e => e.CustomerId).HasColumnName("Customer_Id");
+
                 entity.Property(e => e.OrderId)
                     .IsRequired()
                     .HasMaxLength(25)
@@ -76,32 +77,15 @@ namespace StoreDL.Entities
 
                 entity.Property(e => e.Total).HasColumnType("decimal(6, 2)");
 
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("Customer_Id");
+
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.ProductId)
                     .HasConstraintName("FK__Order_Det__Produ__71D1E811");
-            });
-
-            modelBuilder.Entity<OrderHistory>(entity =>
-            {
-                entity.HasKey(e => e.OrderId)
-                    .HasName("PK__Order_Hi__F1E4639BB57A135F");
-
-                entity.ToTable("Order_History");
-
-                entity.Property(e => e.OrderId).HasColumnName("Order_ID");
-
-                entity.Property(e => e.CustomerId).HasColumnName("Customer_ID");
-
-                entity.Property(e => e.InventoryLocation)
-                    .HasMaxLength(8)
-                    .IsUnicode(false)
-                    .HasColumnName("Inventory_Location");
-
-                entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.OrderHistories)
-                    .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK__Order_His__Custo__6E01572D");
             });
 
             modelBuilder.Entity<Product>(entity =>
