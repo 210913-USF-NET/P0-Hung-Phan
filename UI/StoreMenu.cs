@@ -10,9 +10,8 @@ namespace UI
 {
     class StoreMenu : IMenu
     {
-        //start() for begin the console app 
         public void Start()
-        {//made an empty string for user's choice for menu and set exit to false
+        {
             string connectionString = File.ReadAllText(@"../connectionString.txt");
             DbContextOptions<EarlOfTeaDBContext> options = new 
             DbContextOptionsBuilder<EarlOfTeaDBContext>().UseSqlServer(connectionString).Options;
@@ -20,36 +19,30 @@ namespace UI
             
             bool exit = false;
             string input = "";
-
-            //Need to figure out how to jump around menus
             do
             {
+                Console.WriteLine("Welcome " + CustomerFollower.followMe + ",  ID: " + CustomerFollower.getMyID);
                 Console.WriteLine("\nWhere would you like to go? ");
                 Console.WriteLine("===========================");
-                Console.WriteLine(" 1. My Cart.");
-                Console.WriteLine(" 2. Shopping.");
-                Console.WriteLine(" 3. Exit.");
+                Console.WriteLine(" 1. Start Shopping.");
+                Console.WriteLine(" 2. Exit.");
                 Console.WriteLine("===========================");
                 //Allow user to pick which Menu they want to go to next
                 input = Console.ReadLine();
 
                 switch (input)
                 {
-                    case "1":
-                        new CartMenu().Start();
-                        break;
-
-                    case "2": 
+                    case "1": 
                         new OnlineInventory(new ProductBL(new DBRepo(next))).Start();
                         break;
 
-                    case "3": // Makes exit true and thanks them to visiting
+                    case "2":
                         Console.WriteLine("Thank you for visit, hope to see you again soon!");
                         new MainMenu().Start();
                         exit = true;
                         break;
 
-                    default: //When user enter in a value that wasn't listed above
+                    default:
                         Console.WriteLine("Sorry, please select an option from above.");
                         break;
                 }           

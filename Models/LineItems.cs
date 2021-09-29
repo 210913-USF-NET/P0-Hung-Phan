@@ -36,5 +36,10 @@ namespace Models
         public string StoreLocation { get; set; }
         public decimal Total { get; set; }
         public int CustomerId {get; set;} 
+
+        public override string ToString()
+        {
+            return $"{this.ProductId}  Location: {this.StoreLocation}  QTY: {this.ProductQty}  Total: {this.Total}";
+        }
     }
 }

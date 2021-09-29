@@ -14,6 +14,11 @@ namespace Models
             this.CustomerName = name;
         }
 
+        public CCustomer(int id) : this()
+        {      
+            this.CustomerId = id;
+        }
+
         //Constructor Chain to add on user if Customer wants to add user
         public CCustomer(string name, string user, string password) : this(name)
         {
@@ -32,7 +37,7 @@ namespace Models
 
         public override string ToString()
         {
-            return $"Name: {this.CustomerName}, Username: {this.Username}";
+            return $"Name: {this.CustomerName}, Username: {this.Username}, {this.CustomerId}";
         }
     }
 }

@@ -32,8 +32,9 @@ namespace UI
                 Console.WriteLine("===========================");
                 Console.WriteLine(" 1. Login in as a Customer.");
                 Console.WriteLine(" 2. Login in as Manager.");
-                Console.WriteLine(" 3. Look for Order.");
-                Console.WriteLine(" 4. Exit.");
+                Console.WriteLine(" 3. View Order History.");
+                Console.WriteLine(" 4. Check in Store Inventory.");
+                Console.WriteLine(" 5. Exit.");
                 Console.WriteLine("===========================");
                 //Allow user to pick which Menu they want to go to next
                 input = Console.ReadLine();
@@ -56,7 +57,10 @@ namespace UI
                         new SearchMenu(new CustomerBL(new DBRepo(context))).Start();
                         break;
 
-                    case "4": // Makes exit true and thanks them to visiting
+                        case "4":
+                        break;
+
+                    case "5": // Makes exit true and thanks them to visiting
                         Console.WriteLine("Thank you for visit, hope to see you again soon!");
                         exit = true;
                         break;

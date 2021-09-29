@@ -49,6 +49,7 @@ namespace StoreDL
         {
             return _context.Customers.Select(
                 customer => new Model.CCustomer(){
+                    CustomerId = customer.CustomerId,
                     CustomerName = customer.CustomerName,
                     Username = customer.Username,
                     CPassword = customer.CPassword
@@ -129,12 +130,14 @@ namespace StoreDL
             return _context.OrderDetails.Select(
                 orders => new Model.Order()
                 {
+                    ID = orders.OrderDetailsId,
                     OrderID = orders.OrderId,
                     ProductID = orders.ProductId,
                     QTY = orders.ProductQty,
                     Cost = orders.PriceOfProduct,
                     Location = orders.StoreLocation,
-                    Total = orders.Total
+                    Total = orders.Total,
+                    CustomerId = orders.CustomerId
                 }
             ).ToList();
         }

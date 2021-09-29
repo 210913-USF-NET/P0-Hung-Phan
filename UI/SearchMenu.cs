@@ -18,27 +18,31 @@ namespace UI
         {
             _customer = customer;
         }
+
         public void Start()
         {
             bool exit = false;
             do{
                 Console.WriteLine("How would you like to find your Order? ");
                 Console.WriteLine("=======================================");
-                Console.WriteLine(" 1. Search through Customer Account.");
-                Console.WriteLine(" 2. Exit.");
+                Console.WriteLine(" 1. Find out my Customer ID.");
+                Console.WriteLine(" 2. Search Order History with Customer ID.");
+                Console.WriteLine(" 3. Exit.");
                 Console.WriteLine("=======================================");
 
                 switch(Console.ReadLine())
                 {
                     case "1":
-                    if(matchAccount())
-                    {
-                    //new OrderHistory();
-                    Console.WriteLine("come back when cart is done.");
-                    }
+                    findMe();
+                    new MainMenu().Start();
                     break;
 
                     case "2":
+                    Console.WriteLine("why me");
+                    myOrders();
+                    break;
+
+                    case "3":
                     exit = true;
                     new MainMenu().Start();
                     break;
@@ -50,44 +54,38 @@ namespace UI
             }while (!exit);
         }
 
-        private bool matchAccount()
+        private void findMe()
         {
-            bool match = false;
-            string enteredUser;
-            string enteredPassword;
             List<CCustomer> validAccount = _customer.GetAllCustomer();
-
-            Console.WriteLine("\nPlease enter in your account information.");
-            Console.Write("User: ");
-            enteredUser = Console.ReadLine();
-            Console.Write("Password: ");
-            enteredPassword = Console.ReadLine();
-            for( int u = 0; u <validAccount.Count; u++){
-                if(enteredUser == validAccount[u].Username && enteredPassword == validAccount[u].CPassword){
-                Console.WriteLine($@"Welcome {validAccount[u].CustomerName}.");
-                Console.WriteLine("");
-                    match = true;
+            Console.Write("Please enter your username: ");
+            string uName = Console.ReadLine();
+            Console.Write("Please enter your password: ");
+            string uPass = Console.ReadLine();
+            int id = 0;
+            foreach(var u in validAccount)
+            {
+                if(u.Username == uName && u.CPassword == uPass)
+                {
+                    id = u.CustomerId;
+                    Console.WriteLine($@"Customer Name: {u.CustomerName}, CustomerID: {u.CustomerId}");
                 }
-            }if(match == false){
-                Console.WriteLine("\nUsername or Password are incorrect. Please try again.");
-            }else {
-                Console.WriteLine("Where would you like to shop?");
             }
-            return match;
         }
 
-/*        private void OrderHistory()
+        private void myOrders()
         {
-            Console.WriteLine("\nPlease enter in your Order ID.");
-            Console.Write("OrderID #: ");
-            enteredID = Console.ReadLine();
-            List<Order> history = _customer.OrderHistory();
+        List<Order> mine = _customer.OrderHistory();
+        Console.Write("Please enter CustomerID: ");
+        int cid = int.Parse(Console.ReadLine());
+        foreach(var m in mine)
+        {
+            if(cid == m.CustomerId)
+            {
+                Console.WriteLine(m.ToString());
+            }
+        }
+        }
 
-            foreach(var order in history)
-                if(order.OrderID == enteredID)
-                {
-                    Console.WriteLine($"{history[order].ProductID}            QTY: {history[order].QTY} at {history[order].Cost} for a Total of {history[order].Total}. Order was made for {history[order].Location}.")
-                }
-        }*/
     }
 }
+

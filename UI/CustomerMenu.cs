@@ -76,8 +76,10 @@ namespace UI
             Console.Write("Please enter desired username: ");
             string newUser = Console.ReadLine();
 
-            foreach(var user in validAccount){
-                if(user.Username == newUser){
+            foreach(var user in validAccount)
+            {
+                if(user.Username == newUser)
+                {
                     Console.WriteLine("This username already exists. Please come back when you think of a new password.");
                 }
             }
@@ -109,6 +111,8 @@ namespace UI
                 Console.WriteLine($@"Welcome {validAccount[u].CustomerName}.");
                 Console.WriteLine("");
                     match = true;
+                    CustomerFollower.followMe = validAccount[u].CustomerName;
+                    CustomerFollower.getMyID = validAccount[u].CustomerId;
                 }
             }if(match == false){
                 Console.WriteLine("\nUsername or Password are incorrect. Please try again.");

@@ -69,11 +69,9 @@ namespace UI
                     stockCount = p;
                     stockCount.Stock = amount;
                 }
-            }
-
-            Console.WriteLine(stockCount.Stock);
             _product.changeStock(stockCount);
             Console.WriteLine($"\nNew stock count for {restock[id-1].ProductName} is {restock[id-1].Stock}.");
         }
+    }
     }
 }

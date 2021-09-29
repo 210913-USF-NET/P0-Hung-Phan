@@ -8,8 +8,12 @@ namespace Models
         public CProduct(){
         }
 
-        public CProduct(int stock){
-            this.Stock = stock;
+        // public CProduct(int stock){
+        //     this.Stock = stock;
+        // }
+
+        public CProduct(int id){
+            this.ProductId = id;
         }
 
         public CProduct(int id, string name, string writting, 
