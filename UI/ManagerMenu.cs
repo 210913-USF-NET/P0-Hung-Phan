@@ -21,15 +21,15 @@ namespace UI
 
             bool exit = false;
             string input = "";
-            //Need to figure out how to jump around menus
+            
             do
             {
-                Console.WriteLine("  What would you like to do? ");
+                Console.WriteLine("\n  What would you like to do? ");
                 Console.WriteLine("=============================");
                 Console.WriteLine(" 1. Lookup Customer's Account Info.");
-                Console.WriteLine(" 1. View/Edit Inventory.");
-                Console.WriteLine(" 2. Exit.");
-                Console.WriteLine("=============================");
+                Console.WriteLine(" 2. View/Edit Inventory.");
+                Console.WriteLine(" 3. Exit.");
+                Console.WriteLine("=============================\n");
 
                 input = Console.ReadLine();
 

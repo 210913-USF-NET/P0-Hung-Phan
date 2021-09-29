@@ -7,11 +7,12 @@ namespace Models
     {
         public LineItems(){
         }
-
+        //Constructor overloading
         public LineItems(int id){
             this.ProductId = id;
         }
-
+        
+        //Constructor overloading
         public LineItems(int oid, int pid, int qty, int cid){
             this.OrderId = oid;
             this.ProductId = pid;
@@ -19,6 +20,7 @@ namespace Models
             this.CustomerId = cid;
         }
 
+        //Constructor overloading
         public LineItems(int oid, int pid, int qty,decimal price, string loca, decimal total, int cid){
             this.OrderId = oid;
             this.ProductId = pid;

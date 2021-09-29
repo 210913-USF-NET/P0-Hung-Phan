@@ -12,6 +12,7 @@ namespace UI
 {
     public class Stocking : IMenu
     {
+        //connect and pass things with IProductBL
         private IProduct _product;
 
         public Stocking(IProduct product)
@@ -24,14 +25,14 @@ namespace UI
             bool exit = false;
 
             List<CProduct> restock = _product.ListProducts();
-
+            //display current product inventory
             foreach(var y in restock)
             {
                 Console.WriteLine($"The current Stock for {y.ProductName},        (ID: {y.ProductId})               is QTY:{y.Stock}, Location: {y.InventoryLocation}");
             }
-                Console.WriteLine("What would you like to do?");
+                Console.WriteLine("\nWhat would you like to do?");
                 Console.WriteLine("1. Update stock inventory.");
-                Console.WriteLine("2. Exit.");                
+                Console.WriteLine("2. Exit.\n");                
 
             do
             {
@@ -39,6 +40,9 @@ namespace UI
                 {
                     case "1":
                         changeStock();
+                            Console.WriteLine("\nWhat would you like to do?");
+                            Console.WriteLine("1. Update stock inventory.");
+                            Console.WriteLine("2. Exit.\n");
                         break;
 
                     case "2":
@@ -52,6 +56,7 @@ namespace UI
             } while (!exit);
         }
 
+        //write over old stock amount
         private void changeStock()
         {
             List<CProduct> restock = _product.ListProducts();
@@ -59,12 +64,12 @@ namespace UI
             Console.Write("Please entered the Product ID:");
             int id = int.Parse(Console.ReadLine());
 
-            Console.Write("Please entered the amount of the new amount of stock :");
+            Console.Write("Please entered the new amount for stock :");
             int amount = int.Parse(Console.ReadLine());
             if(amount < 0)
             {
                 Console.WriteLine("Inventory can not be negative.");
-                amount = restock[id].Stock;
+                amount = 0;
             }
             Models.CProduct stockCount = new Models.CProduct();
 
@@ -73,10 +78,10 @@ namespace UI
                 {
                     stockCount = p;
                     stockCount.Stock = amount;
+                    _product.changeStock(stockCount);
+                    Console.WriteLine($"\nNew stock count for {restock[id-1].ProductName} is {restock[id-1].Stock}.");
                 }
-            _product.changeStock(stockCount);
-            Console.WriteLine($"\nNew stock count for {restock[id-1].ProductName} is {restock[id-1].Stock}.");
+            }
         }
-    }
     }
 }

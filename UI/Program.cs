@@ -9,7 +9,7 @@ namespace UI
     {
         //Implements Start() Method in MainMenu.cs 
         static void Main(string[] args)
-        {
+        {//logging when the app begins and ends
         Log. Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.Console().WriteTo.File("../logs/logs.txt").CreateLogger();
 
         Log.Information("Going to get tea... ");

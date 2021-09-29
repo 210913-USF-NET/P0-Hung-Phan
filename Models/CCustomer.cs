@@ -37,7 +37,7 @@ namespace Models
 
         public override string ToString()
         {
-            return $"Name: {this.CustomerName}, Username: {this.Username}, {this.CustomerId}";
+            return $"Name: {this.CustomerName}, Username: {this.Username}";
         }
     }
 }

@@ -77,7 +77,6 @@ namespace StoreDL
             Entity.Product newCount = (from s in _context.Products 
                 where s.ProductId == stockCount.ProductId
                 select s).SingleOrDefault();
-                Console.WriteLine(newCount);
 
             newCount.Stock = stockCount.Stock;
             _context.SaveChanges();

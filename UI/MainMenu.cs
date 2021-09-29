@@ -12,7 +12,7 @@ namespace UI
     {
         //start() for begin the console app 
         public void Start()
-        {
+        {  
             string connectionString = File.ReadAllText(@"../connectionString.txt");
             DbContextOptions<EarlOfTeaDBContext> options = new 
             DbContextOptionsBuilder<EarlOfTeaDBContext>().UseSqlServer(connectionString).Options;
@@ -28,13 +28,13 @@ namespace UI
             //Need to figure out how to jump around menus
             do
             {
-                Console.WriteLine("  Welcome to Earl of Tea! ");
+                Console.WriteLine("\n  Welcome to Earl of Tea! ");
                 Console.WriteLine("===========================");
                 Console.WriteLine(" 1. Login in as a Customer.");
                 Console.WriteLine(" 2. Login in as Manager.");
                 Console.WriteLine(" 3. View Order History.");
                 Console.WriteLine(" 4. Exit.");
-                Console.WriteLine("===========================");
+                Console.WriteLine("===========================\n");
                 //Allow user to pick which Menu they want to go to next
                 input = Console.ReadLine();
 

@@ -8,14 +8,12 @@ namespace Models
         public CProduct(){
         }
 
-        // public CProduct(int stock){
-        //     this.Stock = stock;
-        // }
-
+        //Constructor overloading
         public CProduct(int id){
             this.ProductId = id;
         }
 
+        //Constructor overloading   
         public CProduct(int id, string name, string writting, 
         decimal price, string home, int stock, string sort){
             this.ProductId = id;

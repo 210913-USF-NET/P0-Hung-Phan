@@ -11,6 +11,7 @@ namespace Models
         {
         }
 
+        //Constructor overloading
         public Order(int o_ID, int pid, decimal cost, int qty, string location , decimal total, int customerId)
         {
             this.OrderID = o_ID;
@@ -22,6 +23,7 @@ namespace Models
             this.CustomerId = customerId;
         }
 
+        //Constructor overloading
         public Order(int id, int o_ID, int pid, decimal cost, int qty, string location , decimal total, int customerId) 
         {
             this.ID = id;
@@ -48,7 +50,7 @@ namespace Models
 
         public override string ToString()
         {
-        return $"ProductID: {this.ProductID}, Location: {this.Location}, QTY: {this.QTY}, Cost of Product: {this.Cost}, Total: {this.Total}, Date: {this.Date}";
+        return $"ProductID: {this.ProductID}, Location: {this.Location}, QTY: {this.QTY}, Cost of Product: {this.Cost}, Total: {this.Total}";
         }
     }
 }

@@ -12,6 +12,7 @@ namespace UI
 {
     public class SearchMenu :IMenu
     {
+        //connect and pass things with ICustomerBL
         private ICustomerBL _customer;
 
         public SearchMenu(ICustomerBL customer)
@@ -23,23 +24,24 @@ namespace UI
         {
             bool exit = false;
             do{
-                Console.WriteLine("How would you like to find your Order? ");
+                Console.WriteLine("\nHow would you like to find your Order? ");
                 Console.WriteLine("=======================================");
                 Console.WriteLine(" 1. Find out my Customer ID.");
                 Console.WriteLine(" 2. Search Order History with Customer ID.");
                 Console.WriteLine(" 3. Exit.");
-                Console.WriteLine("=======================================");
+                Console.WriteLine("=======================================\n");
 
                 switch(Console.ReadLine())
                 {
                     case "1":
                     findMe();
                     new MainMenu().Start();
+                    Console.Write("");
                     break;
 
                     case "2":
-                    Console.WriteLine("why me");
                     myOrders();
+                    Console.Write("");
                     break;
 
                     case "3":
@@ -54,10 +56,11 @@ namespace UI
             }while (!exit);
         }
 
+        //looking for id by matching username and password of the same account
         private void findMe()
         {
             List<CCustomer> validAccount = _customer.GetAllCustomer();
-            Console.Write("Please enter your username: ");
+            Console.Write("\nPlease enter your username: ");
             string uName = Console.ReadLine();
             Console.Write("Please enter your password: ");
             string uPass = Console.ReadLine();
@@ -72,14 +75,16 @@ namespace UI
             }
         }
 
+        //looking for list of order through customerID
         private void myOrders()
         {
         List<Order> mine = _customer.OrderHistory();
         Console.Write("Please enter CustomerID: ");
-        int cid = int.Parse(Console.ReadLine());
+        string cid = Console.ReadLine();
+        int id = int.Parse(cid);
         foreach(var m in mine)
         {
-            if(cid == m.CustomerId)
+            if(id == m.CustomerId)
             {
                 Console.WriteLine(m.ToString());
             }

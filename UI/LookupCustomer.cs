@@ -11,6 +11,7 @@ namespace UI
 {
     public class LookupCustomer : IMenu
     {
+        //connect and pass things with IBL
         private ICustomerBL _customer;
 
         public LookupCustomer(ICustomerBL customer)
@@ -22,9 +23,9 @@ namespace UI
             string input = "";
             do
             {
-            Console.WriteLine("What you like to do?");
+            Console.WriteLine("\nWhat you like to do?");
             Console.WriteLine("1. Find Customer's Username and Password");
-            Console.WriteLine("2. Exit.");
+            Console.WriteLine("2. Exit.\n");
             input = Console.ReadLine();
 
             switch(input)
@@ -45,18 +46,25 @@ namespace UI
         }
 
         private bool findCustomer()
-        {
+        {   //if cant find customer account od not based on name
             bool exit = false;
             List<CCustomer> findThem = _customer.GetAllCustomer();
             Console.Write("Please enter customer's Name: ");
             string cName = Console.ReadLine();
+            //to play not found message
+            int t = 1;
             foreach(var u in findThem)
             {
                 if(u.CustomerName == cName)
                 {
                     Console.WriteLine($"Username: {u.Username}  Password: {u.CPassword}");
                 }
+                t = 0;
                 exit = true;
+            }
+            if(t == 1){
+            Console.WriteLine("We could not find your account information. Please try again or make an account.");
+            exit = true;
             }
             return exit;
         }

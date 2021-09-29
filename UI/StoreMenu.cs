@@ -21,12 +21,12 @@ namespace UI
             string input = "";
             do
             {
-                Console.WriteLine("Welcome " + CustomerFollower.followMe + ",  ID: " + CustomerFollower.getMyID);
+                Console.WriteLine("\nWelcome " + CustomerFollower.followMe + ",  ID: " + CustomerFollower.getMyID);
                 Console.WriteLine("\nWhere would you like to go? ");
                 Console.WriteLine("===========================");
                 Console.WriteLine(" 1. Start Shopping.");
                 Console.WriteLine(" 2. Exit.");
-                Console.WriteLine("===========================");
+                Console.WriteLine("===========================\n");
                 //Allow user to pick which Menu they want to go to next
                 input = Console.ReadLine();
 

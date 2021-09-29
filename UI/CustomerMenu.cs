@@ -13,7 +13,7 @@ namespace UI
 {
     public class CustomerMenu : IMenu
     {
-        //connect and pass things with IBL
+        //connect and pass things with ICustomerBL
         private ICustomerBL _customer;
 
         public CustomerMenu(ICustomerBL customer)
@@ -22,10 +22,10 @@ namespace UI
         }
 
         //Layout for the Customer Start Menu using a do while loop to display opinions and nested a switch case to select opinion
-        //Still need to figure out how to jump around menus
         public void Start()
         {
             bool exit = false;
+            //practice code before connecting db
             //string fakeuser = "user";
             //string fakepassword = "pass";
 
@@ -41,7 +41,7 @@ namespace UI
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        //make while loop for checking passwords
+                        //if the account info match then sent to store menu
                         if(matchAccount())
                         {
                         new StoreMenu().Start();
@@ -66,9 +66,11 @@ namespace UI
                 }
             } while (!exit);
         }
+
         //For customer to create an User
         private void AddCustomer()
         {
+            get list of current customers
             List<CCustomer> validAccount = _customer.GetAllCustomer();
             Log. Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.Console().WriteTo.File("../logs/logs.txt").CreateLogger();
 
@@ -78,6 +80,7 @@ namespace UI
             Console.Write("Please enter desired username: ");
             string newUser = Console.ReadLine();
 
+            //loops through current customer list to see if username ids taken
             foreach(var user in validAccount)
             {
                 if(user.Username == newUser)
@@ -89,22 +92,26 @@ namespace UI
 
             Console.Write("Please make a password: ");
             string newPassword = Console.ReadLine();
-
-
-            Models.CCustomer customer = new Models.CCustomer(cName, newUser, newPassword);
-            _customer.AddCustomer(customer);
             Log.Information("Made account. Time to go shopping ");
 
-            Log.CloseAndFlush();
+            //make new customer with entered info and save it to the customer db by using the AddCustomer
+            Models.CCustomer customer = new Models.CCustomer(cName, newUser, newPassword);
+            _customer.AddCustomer(customer);
+            
             Console.WriteLine($"\nWelcome, {customer.ToString()}");
-        
+            Console.WriteLine("Your Account was made please login.\n");
+            Log.CloseAndFlush();
+            new MainMenu().Start();
         }
 
         private bool matchAccount()
         {
+            //bool if account matches or not
             bool match = false;
             string enteredUser;
             string enteredPassword;
+
+            //to loop through each row of customer 
             List<CCustomer> validAccount = _customer.GetAllCustomer();
 
             Console.WriteLine("\nPlease enter in your account information.");
@@ -112,6 +119,8 @@ namespace UI
             enteredUser = Console.ReadLine();
             Console.Write("Password: ");
             enteredPassword = Console.ReadLine();
+
+            //for loop to match compatable Username and Password to existing account
             for( int u = 0; u <validAccount.Count; u++){
                 if(enteredUser == validAccount[u].Username && enteredPassword == validAccount[u].CPassword){
                 Console.WriteLine($@"Welcome {validAccount[u].CustomerName}.");
