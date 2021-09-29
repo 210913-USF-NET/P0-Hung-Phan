@@ -12,11 +12,11 @@ namespace UI
         {
         Log. Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.Console().WriteTo.File("../logs/logs.txt").CreateLogger();
 
-        Log.Information("Application Starting.. ");
+        Log.Information("Going to get tea... ");
         
         new MainMenu().Start();
 
-        Log.Information("Application closing.. ");
+        Log.Information("Came back with a mountain of tea. ");
 
         Log.CloseAndFlush();
         

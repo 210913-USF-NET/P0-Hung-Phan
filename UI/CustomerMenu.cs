@@ -7,6 +7,7 @@ using StoreDL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.IO;
+using Serilog;
 
 namespace UI
 {
@@ -70,7 +71,9 @@ namespace UI
         private void AddCustomer()
         {
             List<CCustomer> validAccount = _customer.GetAllCustomer();
+            Log. Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.Console().WriteTo.File("../logs/logs.txt").CreateLogger();
 
+            Log.Information("Adding Account ");
             Console.Write("Please enter your name: ");
             string cName = Console.ReadLine();
             Console.Write("Please enter desired username: ");
@@ -90,6 +93,9 @@ namespace UI
 
             Models.CCustomer customer = new Models.CCustomer(cName, newUser, newPassword);
             _customer.AddCustomer(customer);
+            Log.Information("Made account. Time to go shopping ");
+
+            Log.CloseAndFlush();
             Console.WriteLine($"\nWelcome, {customer.ToString()}");
         
         }

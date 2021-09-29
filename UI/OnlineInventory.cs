@@ -27,6 +27,8 @@ namespace UI
         {
             List<Cart> shoppingCart = new List<Cart>();
             List<LineItems> items = _product.LinesOfItems();
+            List<LineItems> addToOrder = new List<LineItems>();
+            List<CProduct> newStock = _product.ListProducts();
 
             bool exit = false;
             int fullCart = 0;
@@ -85,11 +87,14 @@ namespace UI
 
                         shoppingCart.Add(new Cart() {oid = newOid, pid = newPid, qty = newqQty, price = newPrice, loc = newLoc, total = newTotal,cid = newCid});
                         Models.LineItems newItem = new Models.LineItems(newOid, newPid, newqQty, newPrice, loc, newTotal, CustomerFollower.getMyID);
-                        _product.createLineItem(newItem);
+                        Models.CProduct buyingProduct = new Models.CProduct(storeCart);
+
+                        addToOrder.Add(newItem);
+                        Console.WriteLine(addToOrder);
                         Console.WriteLine("Currently in Cart:");
                         foreach (Cart cart in shoppingCart)
                         {
-                            Console.WriteLine(cart.ToString());
+                            Console.WriteLine("Name: {newName} " + cart.ToString());
                             
                         }
                     break;
@@ -98,15 +103,26 @@ namespace UI
                     Console.WriteLine("Would you like to checkout?");
                     Console.WriteLine("Currently in Cart:");
                         foreach (Cart cart in shoppingCart)
+                        {
+                            Console.WriteLine(cart.ToString());
+                        }
                     Console.WriteLine("1. Yes");
                     Console.WriteLine("2. No");
                     switch(Console.ReadLine())
                     {
                         case "1":
-                            foreach (Cart cart in shoppingCart)
+                            foreach (var l in addToOrder)
                             {
-                                Console.WriteLine(cart.ToString());
-                            }                           
+                                _product.createLineItem(l); 
+                                foreach(var p in newStock){
+                                if(l.ProductId == p.ProductId)
+                                {
+                                    p.Stock -= l.ProductQty;
+                                    _product.changeStock(p);
+                                }
+                                }
+                            }
+
                             break;
 
                         case "2":
@@ -159,7 +175,7 @@ namespace UI
 
         public override string ToString()
         {
-            return "Customer ID: " + cid + " Order ID: " + oid + " Location: " + loc + " Product ID: " + pid + " Name: " + name + " Price: " + price + " QTY: " + qty + " Total: " + total;
+            return "Product ID: " + pid + " Location: " + loc + " Price: " + price + " QTY: " + qty + " Total: " + total + " Customer ID: " + cid + " Order ID: " + oid ;
         }
 
         }

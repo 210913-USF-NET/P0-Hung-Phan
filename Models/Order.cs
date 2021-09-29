@@ -42,11 +42,13 @@ namespace Models
         public string Location {get; set;}
         public decimal Total {get; set;}
         public int CustomerId {get; set;} 
+        public DateTime Date { get; }
+
 
 
         public override string ToString()
         {
-        return $"ProductID: {this.ProductID}, Location: {this.Location}, QTY: {this.QTY}, Cost of Product: {this.Cost}, Total: {this.Total}";
+        return $"ProductID: {this.ProductID}, Location: {this.Location}, QTY: {this.QTY}, Cost of Product: {this.Cost}, Total: {this.Total}, Date: {this.Date}";
         }
     }
 }
