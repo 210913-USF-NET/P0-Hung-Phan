@@ -42,7 +42,7 @@ namespace UI
                         break;
 
                     case "2":
-                        new ManagerMenu().Start();
+                        new MainMenu().Start();
                         break;
 
                     default:
@@ -61,6 +61,11 @@ namespace UI
 
             Console.Write("Please entered the amount of the new amount of stock :");
             int amount = int.Parse(Console.ReadLine());
+            if(amount < 0)
+            {
+                Console.WriteLine("Inventory can not be negative.");
+                amount = restock[id].Stock;
+            }
             Models.CProduct stockCount = new Models.CProduct();
 
             foreach(var p in restock){

@@ -2,16 +2,18 @@ using System;
 using Models;
 using StoreBL;
 using StoreDL;
+using System.Collections.Generic;
 using StoreDL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 
 namespace UI
 {
-    public class ManagerMenu
+    public class ManagerMenu : IMenu
     {   //To start manager Menu
         public void Start()
         {
+            
             string connectionString = File.ReadAllText(@"../connectionString.txt");
             DbContextOptions<EarlOfTeaDBContext> options = new 
             DbContextOptionsBuilder<EarlOfTeaDBContext>().UseSqlServer(connectionString).Options;
@@ -24,9 +26,9 @@ namespace UI
             {
                 Console.WriteLine("  What would you like to do? ");
                 Console.WriteLine("=============================");
-                Console.WriteLine(" 1. View list of Stores.");
-                Console.WriteLine(" 2. View/Edit Inventory.");
-                Console.WriteLine(" 3. Exit.");
+                Console.WriteLine(" 1. Lookup Customer's Account Info.");
+                Console.WriteLine(" 1. View/Edit Inventory.");
+                Console.WriteLine(" 2. Exit.");
                 Console.WriteLine("=============================");
 
                 input = Console.ReadLine();
@@ -34,7 +36,7 @@ namespace UI
                 switch (input)
                 {
                     case "1":
-                    Console.WriteLine("picked 1");
+                    new LookupCustomer(new CustomerBL(new DBRepo(access))).Start();
                     break;
 
                     case "2":

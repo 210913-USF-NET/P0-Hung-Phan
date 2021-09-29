@@ -1,8 +1,5 @@
-using Xunit;
-using Models;
 using System;
-using System.Collections.Generic;
-using StoreBL;
+using Xunit;
 
 public class CustomerTests{
     [Fact]

@@ -25,7 +25,6 @@ namespace UI
         //Still need to figure out how to jump around menus
         public void Start()
         {
-#region starting
             bool exit = false;
             //string fakeuser = "user";
             //string fakepassword = "pass";
@@ -38,7 +37,7 @@ namespace UI
                 Console.WriteLine(" 2. Make New Username");
                 Console.WriteLine(" 3. Exit.");
                 Console.WriteLine("===========================\n");
-#endregion 
+
                 switch (Console.ReadLine())
                 {
                     case "1":
@@ -84,6 +83,7 @@ namespace UI
                 if(user.Username == newUser)
                 {
                     Console.WriteLine("This username already exists. Please come back when you think of a new password.");
+                    
                 }
             }
 

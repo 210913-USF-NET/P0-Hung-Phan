@@ -33,8 +33,7 @@ namespace UI
                 Console.WriteLine(" 1. Login in as a Customer.");
                 Console.WriteLine(" 2. Login in as Manager.");
                 Console.WriteLine(" 3. View Order History.");
-                Console.WriteLine(" 4. Check in Store Inventory.");
-                Console.WriteLine(" 5. Exit.");
+                Console.WriteLine(" 4. Exit.");
                 Console.WriteLine("===========================");
                 //Allow user to pick which Menu they want to go to next
                 input = Console.ReadLine();
@@ -49,18 +48,17 @@ namespace UI
                         Console.WriteLine("Please enter store password:");
                         password = Console.ReadLine();
                         if(password == "password1"){
-                            new ManagerMenu().Start();  
-                        } else Console.WriteLine("Incorrect password was entered. Please try again.");
+                        new ManagerMenu().Start();  
+                        } else {
+                            Console.WriteLine("Incorrect password was entered. Please try again.");
+                            }
                         break;
                     
                     case "3":
                         new SearchMenu(new CustomerBL(new DBRepo(context))).Start();
                         break;
 
-                        case "4":
-                        break;
-
-                    case "5": // Makes exit true and thanks them to visiting
+                    case "4": // Makes exit true and thanks them to visiting
                         Console.WriteLine("Thank you for visit, hope to see you again soon!");
                         exit = true;
                         break;
