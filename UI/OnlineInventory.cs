@@ -144,7 +144,7 @@ namespace UI
                                 }
                                 }
                             }
-
+                                Console.WriteLine("Order was completed.");
                             break;
 
                         case "2":

@@ -29,6 +29,7 @@ namespace UI
             do
             {
                 Console.WriteLine("\n  Welcome to Earl of Tea! ");
+                Console.WriteLine("*Possibly the only non-British owned British tea shop in Anchorage, AK*");
                 Console.WriteLine("===========================");
                 Console.WriteLine(" 1. Login in as a Customer.");
                 Console.WriteLine(" 2. Login in as Manager.");
@@ -42,6 +43,7 @@ namespace UI
                 {
                     case "1": //go to the Customer Menu
                         new CustomerMenu(new CustomerBL(new DBRepo(context))).Start();
+                        exit = true;
                         break;
 
                     case "2": // Has Manager enter password and if correct go to the Manager Menu if not has them try again.

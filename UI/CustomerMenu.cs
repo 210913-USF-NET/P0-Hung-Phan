@@ -70,7 +70,7 @@ namespace UI
         //For customer to create an User
         private void AddCustomer()
         {
-            get list of current customers
+            //et list of current customers
             List<CCustomer> validAccount = _customer.GetAllCustomer();
             Log. Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.Console().WriteTo.File("../logs/logs.txt").CreateLogger();
 
