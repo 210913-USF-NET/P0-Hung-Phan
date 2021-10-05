@@ -6,8 +6,8 @@ namespace StoreDL
     public interface IRepo
     {
 
-        CCustomer AddCustomer(CCustomer customer);
-        List<CCustomer> GetAllCustomer();
+        CCustomers AddCustomer(CCustomers customer);
+        List<CCustomers> GetAllCustomer();
 
         List<CProduct> ListProducts();
         Models.CProduct changeStock(CProduct stockCount);

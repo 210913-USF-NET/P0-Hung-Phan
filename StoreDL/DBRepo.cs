@@ -2,28 +2,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Model = Models;
-using Entity = StoreDL.Entities;
+using Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace StoreDL
 {
     public class DBRepo : IRepo
     {
-        private Entity.EarlOfTeaDBContext _context;
+        private StoreDBContext _context;
 
         public DBRepo()
         {
         }
 
-        public DBRepo(Entity.EarlOfTeaDBContext context)
+        public DBRepo(StoreDBContext context)
         {
             _context = context;
         }
 
-        public Model.CCustomer AddCustomer(Model.CCustomer customer)
+        public CCustomers AddCustomer(CCustomers customer)
         {
-            Entity.Customer newCustomerID = new Entity.Customer()
+            CCustomers newCustomerID = new()
             {
                 CustomerName = customer.CustomerName,
                 Username = customer.Username,
@@ -36,7 +35,7 @@ namespace StoreDL
 
             _context.ChangeTracker.Clear();
 
-            return new Model.CCustomer()
+            return new CCustomers()
             {
                 CustomerId = newCustomerID.CustomerId,
                 CustomerName = newCustomerID.CustomerName,
@@ -45,10 +44,10 @@ namespace StoreDL
             };
         }
 
-        public List<Model.CCustomer> GetAllCustomer()
+        public List<CCustomers> GetAllCustomer()
         {
             return _context.Customers.Select(
-                customer => new Model.CCustomer(){
+                customer => new CCustomers(){
                     CustomerId = customer.CustomerId,
                     CustomerName = customer.CustomerName,
                     Username = customer.Username,
@@ -57,10 +56,10 @@ namespace StoreDL
             ).ToList();
         } 
 
-        public List<Model.CProduct> ListProducts()
+        public List<CProduct> ListProducts()
         {
             return _context.Products.Select(
-                products => new Model.CProduct(){
+                products => new CProduct(){
                     ProductId = products.ProductId,
                     ProductName = products.ProductName,
                     ProductDescription = products.ProductDescription,
@@ -72,9 +71,9 @@ namespace StoreDL
             ).ToList();
         }
 
-        public Model.CProduct changeStock(Model.CProduct stockCount)
+        public CProduct changeStock(CProduct stockCount)
         {
-            Entity.Product newCount = (from s in _context.Products 
+            CProduct newCount = (from s in _context.Products 
                 where s.ProductId == stockCount.ProductId
                 select s).SingleOrDefault();
 
@@ -82,23 +81,23 @@ namespace StoreDL
             _context.SaveChanges();
             _context.ChangeTracker.Clear();
 
-            return new Model.CProduct(){
+            return new CProduct(){
                 Stock = stockCount.Stock
             };
         }
 
-        public List<Model.LineItems> LinesOfItems()
+        public List<LineItems> LinesOfItems()
         {
             return _context.Products.Select(
-                items => new Model.LineItems(){
+                items => new LineItems(){
                     ProductId = items.ProductId
                 }
             ).ToList();
         }
 
-        public Model.LineItems createLineItem(Model.LineItems item)
+        public LineItems createLineItem(LineItems item)
         {
-            Entity.OrderDetail lines = new Entity.OrderDetail()
+            Order lines = new Order()
             {
                 OrderId = item.OrderId,
                 ProductId = item.ProductId,
@@ -112,7 +111,7 @@ namespace StoreDL
             lines = _context.Add(lines).Entity;
             _context.SaveChanges();
 
-            return new Model.LineItems()
+            return new LineItems()
             {
                 OrderId = lines.OrderId,
                 ProductId = lines.ProductId,
@@ -124,10 +123,10 @@ namespace StoreDL
             };
         }
 
-        public List<Model.Order> OrderHistory()
+        public List<Order> OrderHistory()
         {
             return _context.OrderDetails.Select(
-                orders => new Model.Order()
+                orders => new Order()
                 {
                     ID = orders.OrderDetailsId,
                     OrderID = orders.OrderId,

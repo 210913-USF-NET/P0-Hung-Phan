@@ -6,9 +6,9 @@ namespace StoreBL
 {
     public interface ICustomerBL
     {
-        void AddCustomer(CCustomer customer);
+        void AddCustomer(CCustomers customer);
 
-        List<CCustomer> GetAllCustomer();
+        List<CCustomers> GetAllCustomer();
 
         List<Order> OrderHistory();
     }

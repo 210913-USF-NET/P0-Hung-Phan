@@ -1,21 +1,22 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
     public class CProduct
     {
-        public CProduct(){
+        public CProduct() {
         }
 
         //Constructor overloading
-        public CProduct(int id){
+        public CProduct(int id) {
             this.ProductId = id;
         }
 
         //Constructor overloading   
-        public CProduct(int id, string name, string writting, 
-        decimal price, string home, int stock, string sort){
+        public CProduct(int id, string name, string writting,
+        decimal price, string home, int stock, string sort) {
             this.ProductId = id;
             this.ProductName = name;
             this.ProductDescription = writting;
@@ -24,7 +25,8 @@ namespace Models
             this.Stock = stock;
             this.Category = sort;
         }
-        
+
+        [Key]
         public int ProductId {get; set;}
 
         public string ProductName { get; set; }

@@ -10,7 +10,7 @@ namespace UnitTest
     [Fact] 
     public void Test_CreateCustomer(){
 
-        CCustomer c1 = new CCustomer("Jill", "Bill", "jillbill");
+        Customers c1 = new CCustomer("Jill", "Bill", "jillbill");
         Assert.NotNull(c1);
         }
 
@@ -36,8 +36,8 @@ namespace UnitTest
     [Fact]
     public void Test_GetAllCustomer()
     {
-        List<CCustomer> getallcustomer = new List<CCustomer>();
-        CCustomer g1 = new CCustomer("ni", "na", "nu");
+        List<Customers> getallcustomer = new List<Customers>();
+        Customers g1 = new CCustomer("ni", "na", "nu");
         getallcustomer.Add(g1);
         Assert.NotNull(g1);
     }
@@ -79,8 +79,8 @@ namespace UnitTest
     [Fact]
     public void newAccount()
     {
-        CCustomer c1 = new CCustomer("t", "t", "t");
-        CCustomer c2 = new CCustomer("d", "d", "d");
+        Customers c1 = new CCustomer("t", "t", "t");
+        Customers c2 = new CCustomer("d", "d", "d");
 
         Assert.True(c1 != c2);
     }
@@ -88,9 +88,9 @@ namespace UnitTest
     [Fact]
     public void removeAccount()
     {
-        List<CCustomer> person = new List<CCustomer>();
-        CCustomer y = new CCustomer();
-        CCustomer k = new CCustomer();
+        List<Customers> person = new List<Customers>();
+        Customers y = new Customers();
+        Customers k = new Customers();
         person.Add(y);
         person.Add(k);
         

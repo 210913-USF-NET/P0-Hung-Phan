@@ -15,12 +15,12 @@ namespace StoreBL
             _repo = repo;
         }
 
-        public List<CCustomer> GetAllCustomer()
+        public List<CCustomers> GetAllCustomer()
         {
             return _repo.GetAllCustomer();
         }
 
-        public void AddCustomer(CCustomer customer)
+        public void AddCustomer(CCustomers customer)
         {
             _repo.AddCustomer(customer);
         }

@@ -1,32 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
-    public class CCustomer
+    public class CCustomers
     {
         //Constructor for Customer 
-        public CCustomer(){
+        public CCustomers(){
         }
         //Constructor overloading
-        public CCustomer(string name) : this()
+        public CCustomers(string name) : this()
         {      
             this.CustomerName = name;
         }
 
-        public CCustomer(int id) : this()
+        public CCustomers(int id) : this()
         {      
             this.CustomerId = id;
         }
 
         //Constructor Chain to add on user if Customer wants to add user
-        public CCustomer(string name, string user, string password) : this(name)
+        public CCustomers(string name, string user, string password, string address) : this(name)
         {
             this.Username = user;
             this.CPassword = password;
+            this.Address = address;
         }
 
-        //Properties for name, user
+        //Properties
+        [Key]
         public int CustomerId{get; set;}
 
         public string CustomerName {get; set;}
@@ -34,6 +37,8 @@ namespace Models
         public string Username {get; set;}
 
         public string CPassword {get; set;}
+
+        public string Address { get; set; }
 
         public override string ToString()
         {
