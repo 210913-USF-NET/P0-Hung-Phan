@@ -9,6 +9,8 @@ namespace StoreDL
         CCustomers AddCustomer(CCustomers customer);
         List<CCustomers> GetAllCustomer();
 
+        CCustomers FindCustomer(int CustomerId);
+
         List<CProduct> ListProducts();
         Models.CProduct changeStock(CProduct stockCount);
 

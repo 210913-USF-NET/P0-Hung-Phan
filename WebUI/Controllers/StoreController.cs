@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using StoreBL;
 using Models;
+using WebUI.Models;
 
 namespace WebUI.Controllers
 {
@@ -19,7 +20,7 @@ namespace WebUI.Controllers
         // GET: StoreController
         public ActionResult Index()
         {
-            List<CCustomers> allCustomer = _bl.GetAllCustomer();
+            List<CustomerVM> allCustomer = _bl.GetAllCustomer().Select(c => new CustomerVM(c)).ToList();
             return View(allCustomer);
         }
 
@@ -38,13 +39,18 @@ namespace WebUI.Controllers
         // POST: StoreController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CustomerVM customer)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if(ModelState.IsValid)
+                {
+                    _bl.AddCustomer(customer.ToModel());
+                    return RedirectToAction(nameof(Index));
+                }
+                return View();
             }
-            catch
+            catch (Exception)
             {
                 return View();
             }

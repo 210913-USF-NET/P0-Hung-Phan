@@ -21,11 +21,10 @@ namespace Models
         }
 
         //Constructor Chain to add on user if Customer wants to add user
-        public CCustomers(string name, string user, string password, string address) : this(name)
+        public CCustomers(string name, string user, string password) : this(name)
         {
             this.Username = user;
             this.CPassword = password;
-            this.Address = address;
         }
 
         //Properties
@@ -37,8 +36,6 @@ namespace Models
         public string Username {get; set;}
 
         public string CPassword {get; set;}
-
-        public string Address { get; set; }
 
         public override string ToString()
         {

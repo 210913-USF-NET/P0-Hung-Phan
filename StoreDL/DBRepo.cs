@@ -56,6 +56,11 @@ namespace StoreDL
             ).ToList();
         } 
 
+        public CCustomers FindCustomer(int CustomerId)
+        {
+            return _context.Customers.AsNoTracking().FirstOrDefault();
+        }
+
         public List<CProduct> ListProducts()
         {
             return _context.Products.Select(
