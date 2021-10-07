@@ -4,11 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Shopping</h1>
 
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
 <table class="table">
     <thead>
         <tr>
@@ -33,7 +30,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.InventoryLocation)
             </th>
-            <th></th>
+            <th>
+                Quantity
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -61,7 +60,9 @@
                 @Html.DisplayFor(modelItem => item.InventoryLocation)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                <label for="quantity">Quantity:</label>
+                <input type="number" min="0">
+                <input type="submit" value="Submit">
             </td>
         </tr>
 }

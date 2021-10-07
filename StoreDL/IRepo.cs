@@ -5,7 +5,6 @@ namespace StoreDL
 {
     public interface IRepo
     {
-
         CCustomers AddCustomer(CCustomers customer);
         List<CCustomers> GetAllCustomer();
 
@@ -15,12 +14,11 @@ namespace StoreDL
         List<CProduct> ListProducts();
         Models.CProduct changeStock(CProduct stockCount);
 
+        CProduct showProduct(int id);
         CProduct AddProduct(CProduct products);
         List<LineItems> LinesOfItems();
         LineItems createLineItem(LineItems item);
 
         List<Order> OrderHistory();
-
-
     }
 }

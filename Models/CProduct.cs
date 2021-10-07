@@ -40,5 +40,7 @@ namespace Models
         public int Stock {get; set; }
 
         public string InventoryLocation { get; set;}
+
     }
+
 }

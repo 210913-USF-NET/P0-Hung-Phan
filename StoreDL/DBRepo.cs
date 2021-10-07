@@ -131,6 +131,11 @@ namespace StoreDL
             ).ToList();
         }
 
+        public CProduct showProduct(int id)
+        {
+            return _context.Products.AsNoTracking().FirstOrDefault(p => p.ProductId == id);
+        }
+
         public CProduct changeStock(CProduct stockCount)
         {
             CProduct newCount = (from s in _context.Products 

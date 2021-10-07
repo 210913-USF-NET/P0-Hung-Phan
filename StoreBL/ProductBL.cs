@@ -25,6 +25,10 @@ namespace StoreBL
             return _repo.AddProduct(products);
         }
 
+        public CProduct showProduct(int id)
+        {
+            return _repo.showProduct(id);
+        }
         public Models.CProduct changeStock(CProduct stockCount)
         {
             return _repo.changeStock(stockCount);

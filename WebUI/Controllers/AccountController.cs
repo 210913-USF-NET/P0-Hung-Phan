@@ -4,45 +4,64 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using StoreBL;
 using Models;
+using StoreBL;
 
 namespace WebUI.Controllers
 {
-    public class ProductController : Controller
+    public class AccountController : Controller
     {
-        private IProduct _bl;
-        public ProductController(IProduct bl)
+        private ICustomerBL _bl;
+        public AccountController(ICustomerBL bl)
         {
             _bl = bl;
         }
 
-        // GET: ProductController
+        // GET: AccountController
         public ActionResult Index()
         {
-            List<CProduct> allProduct = _bl.ListProducts();
-            return View(allProduct);
+            List<CCustomers> allCustomers = _bl.GetAllCustomer();
+            return View(allCustomers);
         }
 
-        // GET: ProductController/Create
+        // GET: AccountController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ProductController/Create
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult Login(CCustomers customer)
+        {
+            return View();
+        }
+
+        // POST: AccountController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CProduct product)
+        public ActionResult Create(CCustomers customer)
         {
             try
             {
-               if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
-                    _bl.AddProduct(product);
-                   return RedirectToAction(nameof(Index));
+                    //List<CCustomers> Taken = _bl.GetAllCustomer();
+                    //foreach(var user in Taken)
+                    //{
+                    //    if(user.Username == customer.Username)
+                    //    {
+                    //        Console.WriteLine("This username already exist.");
+                    //        return View();
+                    //    }
+                    _bl.AddCustomer(customer);
+                    return RedirectToAction(nameof(Index));
+                    //}
                 }
-               return View();
+                return View();
             }
             catch
             {
@@ -50,14 +69,13 @@ namespace WebUI.Controllers
             }
         }
 
-         //GET: ProductController/Edit/5
+        // GET: AccountController/Edit/5
         public ActionResult Edit(int id)
         {
-            
             return View();
         }
 
-        // POST: ProductController/Edit/5
+        // POST: AccountController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -72,13 +90,13 @@ namespace WebUI.Controllers
             }
         }
 
-        // GET: ProductController/Delete/5
+        // GET: AccountController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ProductController/Delete/5
+        // POST: AccountController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

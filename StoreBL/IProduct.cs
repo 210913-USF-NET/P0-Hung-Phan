@@ -15,5 +15,7 @@ namespace StoreBL
         CProduct AddProduct(CProduct products);
 
         void createLineItem(LineItems item);
+
+        CProduct showProduct(int id);
     }
 }
