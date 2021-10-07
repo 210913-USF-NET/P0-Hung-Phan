@@ -20,9 +20,14 @@ namespace StoreBL
             return _repo.GetAllCustomer();
         }
         
-        public CCustomers FindCustomer(int CustomerId)
+        public CCustomers FindCustomer(int id)
         {
-            return _repo.FindCustomer(CustomerId);
+            return _repo.FindCustomer(id);
+        }
+
+        public CCustomers UpdateCustomer(CCustomers customerUpdate)
+        {
+            return _repo.UpdateCustomer(customerUpdate);
         }
 
         public void AddCustomer(CCustomers customer)

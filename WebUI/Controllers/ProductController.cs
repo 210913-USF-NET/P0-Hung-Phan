@@ -1,0 +1,95 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using StoreBL;
+using Models;
+
+namespace WebUI.Controllers
+{
+    public class ProductController : Controller
+    {
+        private IProduct _bl;
+        public ProductController(IProduct bl)
+        {
+            _bl = bl;
+        }
+
+        // GET: ProductController
+        public ActionResult Index()
+        {
+            List<CProduct> productShowing = _bl.ListProducts();
+            return View(productShowing);
+        }
+
+        //// GET: ProductController/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //// POST: ProductController/Create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(CProduct product)
+        //{
+        //    try
+        //    {
+        //        if(ModelState.IsValid)
+        //        {
+        //            _bl.AddProduct(product);
+        //            return RedirectToAction(nameof(Index));
+        //        }
+        //        return View();
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
+        // GET: ProductController/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: ProductController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: ProductController/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: ProductController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+    }
+}

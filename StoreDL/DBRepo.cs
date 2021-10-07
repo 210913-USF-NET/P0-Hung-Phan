@@ -56,9 +56,64 @@ namespace StoreDL
             ).ToList();
         } 
 
-        public CCustomers FindCustomer(int CustomerId)
+        public CCustomers FindCustomer(int id)
         {
-            return _context.Customers.AsNoTracking().FirstOrDefault();
+            return _context.Customers.AsNoTracking().FirstOrDefault(c => c.CustomerId == id);
+        }
+
+        public CCustomers UpdateCustomer(CCustomers customerUpdate)
+        {
+            CCustomers newCustomer = new CCustomers()
+            {
+                CustomerId = customerUpdate.CustomerId,
+                CustomerName = customerUpdate.CustomerName,
+                Username = customerUpdate.Username,
+                CPassword = customerUpdate.CPassword
+            };
+
+            newCustomer = _context.Customers.Update(newCustomer).Entity;
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
+
+            return new CCustomers()
+            {
+                CustomerId = newCustomer.CustomerId,
+                CustomerName = newCustomer.CustomerName,
+                Username = newCustomer.Username,
+                CPassword = newCustomer.CPassword
+            };
+
+        }
+
+        public CProduct AddProduct(CProduct products)
+        {
+            CProduct newProduct = new()
+            {
+                ProductId = products.ProductId,
+                ProductName = products.ProductName,
+                ProductDescription = products.ProductDescription,
+                Price = products.Price,
+                InventoryLocation = products.InventoryLocation,
+                Stock = products.Stock,
+                Category = products.Category
+            };
+
+            newProduct = _context.Add(newProduct).Entity;
+
+            _context.SaveChanges();
+
+            _context.ChangeTracker.Clear();
+
+            return new CProduct()
+            {
+                ProductId = newProduct.ProductId,
+                ProductName = newProduct.ProductName,
+                ProductDescription = newProduct.ProductDescription,
+                Price = newProduct.Price,
+                InventoryLocation = newProduct.InventoryLocation,
+                Stock = newProduct.Stock,
+                Category = newProduct.Category
+            };
         }
 
         public List<CProduct> ListProducts()

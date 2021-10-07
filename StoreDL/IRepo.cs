@@ -9,11 +9,13 @@ namespace StoreDL
         CCustomers AddCustomer(CCustomers customer);
         List<CCustomers> GetAllCustomer();
 
-        CCustomers FindCustomer(int CustomerId);
+        CCustomers FindCustomer(int id);
+        CCustomers UpdateCustomer(CCustomers customerUpdate);
 
         List<CProduct> ListProducts();
         Models.CProduct changeStock(CProduct stockCount);
 
+        CProduct AddProduct(CProduct products);
         List<LineItems> LinesOfItems();
         LineItems createLineItem(LineItems item);
 

@@ -10,7 +10,9 @@ namespace StoreBL
 
         List<CCustomers> GetAllCustomer();
 
-        CCustomers FindCustomer(int CustomerId);
+        CCustomers FindCustomer(int id);
+
+        CCustomers UpdateCustomer(CCustomers customerUpdate);
 
         List<Order> OrderHistory();
     }

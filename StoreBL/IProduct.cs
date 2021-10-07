@@ -12,6 +12,8 @@ namespace StoreBL
 
         List<LineItems> LinesOfItems();
 
+        CProduct AddProduct(CProduct products);
+
         void createLineItem(LineItems item);
     }
 }
