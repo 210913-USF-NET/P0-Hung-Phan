@@ -41,5 +41,7 @@ namespace WebUI.Models
                 CPassword = this.CPassword
             };
         }
+        public string ConfirmPassword { get; set; }
+
     }
 }

@@ -23,7 +23,7 @@ namespace WebUI.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Account()
         {
             return View();
         }

@@ -32,6 +32,7 @@ namespace WebUI
             services.AddScoped<IRepo, DBRepo>();
             services.AddScoped<ICustomerBL, CustomerBL>();
             services.AddScoped<IProduct, ProductBL>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +52,7 @@ namespace WebUI
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
