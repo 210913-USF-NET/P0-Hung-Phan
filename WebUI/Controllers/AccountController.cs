@@ -30,13 +30,34 @@ namespace WebUI.Controllers
             return View();
         }
 
+        //Get Login
         public ActionResult Login()
         {
             return View();
         }
 
+        //post login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(CCustomers customer)
         {
+            if(ModelState.IsValid)
+            {
+                List<CCustomers> validAccount = _bl.GetAllCustomer();
+
+                for(int i = 0; i < validAccount.Count; i++)
+                {
+                    if(customer.Username == validAccount[i].Username && customer.CPassword == validAccount[i].CPassword)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }else
+                    {
+                        ModelState.AddModelError("Failure", "Wrong Username and password combination !");
+                        return View();
+                    }
+                }
+            
+            }
             return View();
         }
 
