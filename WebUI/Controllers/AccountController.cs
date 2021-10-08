@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Models;
 using StoreBL;
+using System.Net.Http;
 
 namespace WebUI.Controllers
 {
@@ -44,19 +45,17 @@ namespace WebUI.Controllers
             if(ModelState.IsValid)
             {
                 List<CCustomers> validAccount = _bl.GetAllCustomer();
+                string inputUsername = customer.Username;
+                string inputCPassword = customer.CPassword;
 
-                for(int i = 0; i < validAccount.Count; i++)
-                {
-                    if(customer.Username == validAccount[i].Username && customer.CPassword == validAccount[i].CPassword)
+                    foreach(var i in validAccount)
                     {
-                        return RedirectToAction(nameof(Index));
-                    }else
-                    {
-                        ModelState.AddModelError("Failure", "Wrong Username and password combination !");
-                        return View();
+                        if (inputUsername == i.Username && inputCPassword == i.CPassword)
+                        {
+                        Response.Cookies.Append("MyCookie", "User");
+                        return RedirectToAction("Index", "Home");
+                        }
                     }
-                }
-            
             }
             return View();
         }

@@ -5,6 +5,7 @@
 }
 
 <h1>Shopping</h1>
+<p><a asp-action"BuyProduct">Work</a></p>
 
 <table class="table">
     <thead>
@@ -29,9 +30,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.InventoryLocation)
-            </th>
-            <th>
-                Quantity
             </th>
         </tr>
     </thead>
@@ -60,9 +58,16 @@
                 @Html.DisplayFor(modelItem => item.InventoryLocation)
             </td>
             <td>
+                <form>
                 <label for="quantity">Quantity:</label>
-                <input type="number" min="0">
-                <input type="submit" value="Submit">
+                <input type="number" id="buy" min="0">
+                <button type="button" onclick="update()">Auto-fill form field</button>>
+                </form>
+                <script>
+                    function update() {
+                        document.getElementById("buy").value = "Added to cart.";
+                    }
+                </script>
             </td>
         </tr>
 }

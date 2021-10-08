@@ -4,50 +4,39 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using StoreBL;
 using Models;
+using StoreBL;
 
 namespace WebUI.Controllers
 {
-    public class ProductController : Controller
+    public class CartController : Controller
     {
         private IProduct _bl;
-        public ProductController(IProduct bl)
+        public CartController(IProduct bl)
         {
             _bl = bl;
         }
-
-        // GET: ProductController
+        // GET: CartController
         public ActionResult Index()
         {
-            List<CProduct> allProduct = _bl.ListProducts();
-            return View(allProduct);
+            List<LineItems> items = _bl.LinesOfItems();
+            return View(items);
         }
 
-        public ActionResult BuyProducts()
-        {
-
-        }
-
-        // GET: ProductController/Create
+        // GET: CartController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ProductController/Create
+        // POST: CartController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CProduct product)
+        public ActionResult Create(IFormCollection collection)
         {
             try
             {
-               if(ModelState.IsValid)
-                {
-                    _bl.AddProduct(product);
-                   return RedirectToAction(nameof(Index));
-                }
-               return View();
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
@@ -55,14 +44,13 @@ namespace WebUI.Controllers
             }
         }
 
-         //GET: ProductController/Edit/5
+        // GET: CartController/Edit/5
         public ActionResult Edit(int id)
         {
-            
             return View();
         }
 
-        // POST: ProductController/Edit/5
+        // POST: CartController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -77,13 +65,13 @@ namespace WebUI.Controllers
             }
         }
 
-        // GET: ProductController/Delete/5
+        // GET: CartController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ProductController/Delete/5
+        // POST: CartController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
