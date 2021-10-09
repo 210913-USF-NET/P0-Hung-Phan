@@ -29,11 +29,37 @@ namespace WebUI.Controllers
             return View();
         }
 
+        public ActionResult Cart()
+        {
+            List<LineItems> items = _bl.LinesOfItems();
+            return View(items);
+        }
+
         public ActionResult Ceylon()
         {
             List<CProduct> allProduct = _bl.ListProducts();
             return View(allProduct);
         }
+
+        [HttpPost]
+        public ActionResult Ceylon(CProduct change)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    _bl.changeStock(change);
+                    return RedirectToAction(nameof(Index));
+                }
+                return View();
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         public ActionResult Assam()
         {
             List<CProduct> allProduct = _bl.ListProducts();
@@ -61,6 +87,7 @@ namespace WebUI.Controllers
             List<CProduct> allProduct = _bl.ListProducts();
             return View(allProduct);
         }
+
 
         // GET: ProductController/Create
         public ActionResult Create()

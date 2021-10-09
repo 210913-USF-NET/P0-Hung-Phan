@@ -11,18 +11,18 @@
     if (item.ProductId == 1)
     {
         <p>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </p>
-        <p>
-            @Html.DisplayFor(modelItem => item.Price)
-        </p>
-        <p>
+            Category:
+            @Html.DisplayFor(modelItem => item.Category) <br />
+            Description:
             @Html.DisplayFor(modelItem => item.ProductDescription)
         </p>
         <p>
-            @Html.DisplayFor(modelItem => item.Category)
+            QTY:
+            @Html.DisplayFor(modelItem => item.Stock) <br />
+            $ @Html.DisplayFor(modelItem => item.Price)
         </p>
         <p>
+            Location:
             @Html.DisplayFor(modelItem => item.InventoryLocation)
         </p>
     }
@@ -30,3 +30,9 @@
 
 
 
+<form asp-action="Cart">
+    <label for="stock">How many would you like to buy?</label>
+    <input type="number" id="stock" size="3" name="stock" value=""><br>
+    <input type="submit" value="Add To Cart">
+    @Html.ActionLink("", "Cart", "Product")
+</form>

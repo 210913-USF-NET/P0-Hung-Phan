@@ -42,24 +42,26 @@ namespace WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(CCustomers customer)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 List<CCustomers> validAccount = _bl.GetAllCustomer();
                 string inputUsername = customer.Username;
                 string inputCPassword = customer.CPassword;
 
-                    foreach(var i in validAccount)
+                foreach (var i in validAccount)
+                {
+                    if (inputUsername == i.Username && inputCPassword == i.CPassword)
                     {
-                        if (inputUsername == i.Username && inputCPassword == i.CPassword)
-                        {
-                        Response.Cookies.Append("MyCookie", "User");
-                        return RedirectToAction("Index", "Home");
-                        }
+                        Response.Cookies.Append("UserCookie", "i.Username");
+                        var HiCookie = Request.Cookies["UserCookie"];
+                        return RedirectToAction("ItemPage", "Product");
                     }
+                }
             }
             return View();
         }
 
+        [HttpPost]
         // POST: AccountController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
