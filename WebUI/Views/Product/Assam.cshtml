@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Models.CProduct>
+
+    @{
+    ViewData["Title"] = "Assam";
+    }
+
+    <h1>Assam Tea</h1>
+
+    @foreach (var item in Model)
+    {
+    if (item.ProductId == 2)
+    {
+    <p>
+        @Html.DisplayFor(modelItem => item.ProductName)
+    </p>
+    <p>
+        @Html.DisplayFor(modelItem => item.Price)
+    </p>
+    <p>
+        @Html.DisplayFor(modelItem => item.ProductDescription)
+    </p>
+    <p>
+        @Html.DisplayFor(modelItem => item.Category)
+    </p>
+    <p>
+        @Html.DisplayFor(modelItem => item.InventoryLocation)
+    </p>
+    }
+    }
+
+
+

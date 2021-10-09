@@ -24,9 +24,42 @@ namespace WebUI.Controllers
             return View(allProduct);
         }
 
-        public ActionResult BuyProducts()
+        public ActionResult ItemPage()
         {
+            return View();
+        }
 
+        public ActionResult Ceylon()
+        {
+            List<CProduct> allProduct = _bl.ListProducts();
+            return View(allProduct);
+        }
+        public ActionResult Assam()
+        {
+            List<CProduct> allProduct = _bl.ListProducts();
+            return View(allProduct);
+        }
+        public ActionResult EarlGrey()
+        {
+            List<CProduct> allProduct = _bl.ListProducts();
+            return View(allProduct);
+        }
+        public ActionResult Chai()
+        {
+            List<CProduct> allProduct = _bl.ListProducts();
+            return View(allProduct);
+        }
+
+        public ActionResult BlueberryLavender()
+        {
+            List<CProduct> allProduct = _bl.ListProducts();
+            return View(allProduct);
+        }
+
+        public ActionResult LemonMint()
+        {
+            List<CProduct> allProduct = _bl.ListProducts();
+            return View(allProduct);
         }
 
         // GET: ProductController/Create
