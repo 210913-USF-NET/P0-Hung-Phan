@@ -56,11 +56,6 @@ namespace StoreDL
             ).ToList();
         } 
 
-        public CCustomers FindCustomer(int id)
-        {
-            return _context.Customers.AsNoTracking().FirstOrDefault(c => c.CustomerId == id);
-        }
-
         public CCustomers UpdateCustomer(CCustomers customerUpdate)
         {
             CCustomers newCustomer = new CCustomers()

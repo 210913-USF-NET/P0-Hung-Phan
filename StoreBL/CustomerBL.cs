@@ -19,11 +19,6 @@ namespace StoreBL
         {
             return _repo.GetAllCustomer();
         }
-        
-        public CCustomers FindCustomer(int id)
-        {
-            return _repo.FindCustomer(id);
-        }
 
         public CCustomers UpdateCustomer(CCustomers customerUpdate)
         {

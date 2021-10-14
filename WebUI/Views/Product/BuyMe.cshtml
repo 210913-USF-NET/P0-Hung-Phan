@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Models.CProduct>
+
+@{
+    ViewData["Title"] = "BuyMe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        font-family: 'Brush Script MT', cursive;
+    }
+</style>
+<body style="background-color: rgb(236,176,56); ">
+
+    <h1>Products</h1>
+
+    <table>
+        <tr>
+            <th>
+                Product Id
+            </th>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Qty
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                How Many?
+            </th>
+            <th>
+                Buy Me
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    @item.ProductId
+                </th>
+                <th>
+                    @item.ProductName
+                </th>
+                <th>
+                    @item.Stock
+                </th>
+                <th>
+                    @item.Price
+                </th>
+                <th>
+                    @item.InventoryLocation
+                </th>
+                <th>
+                    <input type="number" name="@item.ProductId" min="0" max="@item.Stock" />
+                </th>
+                <th>
+                    <a asp-controller="Product" asp-action="Cart" asp-route-id="@item.ProductId">Buy Now</a>
+                </th>
+            </tr>
+        }
+
+    </table>
+</body>

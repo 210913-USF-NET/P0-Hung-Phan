@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using StoreBL;
 using Models;
 
+
 namespace WebUI.Controllers
 {
     public class ProductController : Controller
@@ -18,13 +19,7 @@ namespace WebUI.Controllers
         }
 
         // GET: ProductController
-        public ActionResult Index()
-        {
-            List<CProduct> allProduct = _bl.ListProducts();
-            return View(allProduct);
-        }
-
-        public ActionResult ItemPage()
+        public ActionResult Items()
         {
             return View();
         }
@@ -35,21 +30,19 @@ namespace WebUI.Controllers
             return View(items);
         }
 
-        public ActionResult Ceylon()
-        {
-            List<CProduct> allProduct = _bl.ListProducts();
-            return View(allProduct);
-        }
+
+
+        // GET: ProductController/Create
 
         [HttpPost]
-        public ActionResult Ceylon(CProduct change)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateOrder(LineItems Buy)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-
-                    _bl.changeStock(change);
+                    _bl.createLineItem(Buy);
                     return RedirectToAction(nameof(Index));
                 }
                 return View();
@@ -60,62 +53,8 @@ namespace WebUI.Controllers
             }
         }
 
-        public ActionResult Assam()
-        {
-            List<CProduct> allProduct = _bl.ListProducts();
-            return View(allProduct);
-        }
-        public ActionResult EarlGrey()
-        {
-            List<CProduct> allProduct = _bl.ListProducts();
-            return View(allProduct);
-        }
-        public ActionResult Chai()
-        {
-            List<CProduct> allProduct = _bl.ListProducts();
-            return View(allProduct);
-        }
 
-        public ActionResult BlueberryLavender()
-        {
-            List<CProduct> allProduct = _bl.ListProducts();
-            return View(allProduct);
-        }
-
-        public ActionResult LemonMint()
-        {
-            List<CProduct> allProduct = _bl.ListProducts();
-            return View(allProduct);
-        }
-
-
-        // GET: ProductController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ProductController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CProduct product)
-        {
-            try
-            {
-               if(ModelState.IsValid)
-                {
-                    _bl.AddProduct(product);
-                   return RedirectToAction(nameof(Index));
-                }
-               return View();
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-         //GET: ProductController/Edit/5
+        //GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
             
@@ -157,5 +96,13 @@ namespace WebUI.Controllers
                 return View();
             }
         }
+
+        public ActionResult BuyMe()
+        {
+            var thisone = HttpContext.Request.Cookies["Id"];
+            List<CProduct> allProduct = _bl.ListProducts();
+            return View(allProduct);
+        }
+
     }
 }

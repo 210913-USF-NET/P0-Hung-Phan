@@ -8,7 +8,6 @@ namespace StoreDL
         CCustomers AddCustomer(CCustomers customer);
         List<CCustomers> GetAllCustomer();
 
-        CCustomers FindCustomer(int id);
         CCustomers UpdateCustomer(CCustomers customerUpdate);
 
         List<CProduct> ListProducts();

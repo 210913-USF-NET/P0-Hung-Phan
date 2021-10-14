@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Models;
 using StoreBL;
 using System.Net.Http;
+using Serilog;
 
 namespace WebUI.Controllers
 {
@@ -21,8 +22,7 @@ namespace WebUI.Controllers
         // GET: AccountController
         public ActionResult Index()
         {
-            List<CCustomers> allCustomers = _bl.GetAllCustomer();
-            return View(allCustomers);
+            return View();
         }
 
         // GET: AccountController/Create
@@ -47,14 +47,13 @@ namespace WebUI.Controllers
                 List<CCustomers> validAccount = _bl.GetAllCustomer();
                 string inputUsername = customer.Username;
                 string inputCPassword = customer.CPassword;
-
                 foreach (var i in validAccount)
                 {
                     if (inputUsername == i.Username && inputCPassword == i.CPassword)
                     {
-                        Response.Cookies.Append("UserCookie", "i.Username");
-                        var HiCookie = Request.Cookies["UserCookie"];
-                        return RedirectToAction("ItemPage", "Product");
+                        Log.Information("Login successful.");
+                        HttpContext.Response.Cookies.Append("Id", i.CustomerId.ToString());
+                        return RedirectToAction("BuyMe", "Product");
                     }
                 }
             }
@@ -71,17 +70,9 @@ namespace WebUI.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //List<CCustomers> Taken = _bl.GetAllCustomer();
-                    //foreach(var user in Taken)
-                    //{
-                    //    if(user.Username == customer.Username)
-                    //    {
-                    //        Console.WriteLine("This username already exist.");
-                    //        return View();
-                    //    }
                     _bl.AddCustomer(customer);
+                    Log.Information("Acount Made.");
                     return RedirectToAction(nameof(Index));
-                    //}
                 }
                 return View();
             }

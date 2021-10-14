@@ -3,52 +3,72 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Welcome</h1>
-
-<p>
-    <a asp-action="Create">Create New Account        |     </a>
-    <a asp-action="Login">Login</a>
-</p>
-@*<table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.CustomerId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CustomerName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Username)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CPassword)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-    @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Username)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CPassword)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
+<style>
+    body {
+        background-image: url('https://cdn.wallpapersafari.com/55/12/hizK5X.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: 'Brush Script MT', cursive;
     }
-        </tbody>
-    </table>*@
+    h1 {text-align: center;}
+    p {text-align: center;}
+    div {text-align: center;}
+</style>
+
+<div>
+    <h1 style="font-size:100px" >Welcome</h1>
+
+    <p>
+        <a>
+            <input type="button" value="Create An Account" onclick="location.href='@Url.Action("Create", "Account")'" />
+        </a>
+        <div class="divider" />
+        <a>
+            <input type="button" value="Login" onclick="location.href='@Url.Action("Login", "Account")'" />
+        </a>
+    </p>
+
+</div>
+
+    @*<table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CustomerId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CustomerName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Username)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CPassword)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CPassword)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>*@
