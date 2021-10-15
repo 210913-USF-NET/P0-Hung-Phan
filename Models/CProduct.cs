@@ -48,6 +48,19 @@ namespace Models
 
         public string InventoryLocation { get; set;}
 
+
+        public int ComebackProductId()
+        {
+            return this.ProductId;
+        }
+        public decimal ComebackPrice()
+        {
+            return this.Price;
+        }
+        public String ComebackInventory()
+        {
+            return this.InventoryLocation;
+        }
     }
 
 }

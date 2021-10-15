@@ -123,5 +123,20 @@ namespace WebUI.Controllers
                 return View();
             }
         }
+
+        public ActionResult OrderHistory()
+        {
+            var historyId = Int32.Parse(HttpContext.Request.Cookies["Id"]);
+            List<Order> pastOrder = _bl.OrderHistory();
+            List<Order> tempOrder = new List<Order>();
+            foreach(var i in pastOrder)
+            {
+                if(i.CustomerId == historyId)
+                {
+                    tempOrder.Add(i);
+                }
+            }
+            return View(tempOrder);
+        }
     }
 }

@@ -133,38 +133,35 @@ namespace StoreDL
 
         public CProduct changeStock(CProduct stockCount)
         {
-            CProduct newCount = (from s in _context.Products 
-                where s.ProductId == stockCount.ProductId
-                select s).SingleOrDefault();
+            CProduct tempProduct = GetProductById(stockCount.ProductId);
+            tempProduct.Stock -= 1;
 
-            newCount.Stock = stockCount.Stock;
             _context.SaveChanges();
             _context.ChangeTracker.Clear();
 
-            return new CProduct(){
-                Stock = stockCount.Stock
-            };
+            return new CProduct();
         }
 
         public List<LineItems> LinesOfItems()
         {
             return _context.Products.Select(
                 items => new LineItems(){
-                    ProductId = items.ProductId
+                    ProductID = items.ProductId
                 }
             ).ToList();
         }
 
         public LineItems createLineItem(LineItems item)
         {
+            Random randId = new Random();
             Order lines = new Order()
             {
-                OrderId = item.OrderId,
-                ProductId = item.ProductId,
-                ProductQty = item.ProductQty,
-                PriceOfProduct = item.PriceOfProduct,
-                StoreLocation = item.StoreLocation,
-                Total = item.Total,
+                OrderID = randId.Next(1, 1000000),
+                ProductID = item.ProductID,
+                QTY = 1,
+                Cost = item.PriceOfProduct,
+                Location = item.StoreLocation,
+                Total = item.PriceOfProduct,
                 CustomerId = item.CustomerId
             };
 
@@ -173,12 +170,12 @@ namespace StoreDL
 
             return new LineItems()
             {
-                OrderId = lines.OrderId,
-                ProductId = lines.ProductId,
-                ProductQty = lines.ProductQty,
-                PriceOfProduct = lines.PriceOfProduct,
-                StoreLocation = lines.StoreLocation,
-                Total = lines.Total,
+                OrderID = lines.OrderID,
+                ProductID = lines.ProductID,
+                ProductQty = 1,
+                PriceOfProduct = lines.Cost,
+                StoreLocation = lines.Location,
+                Total = item.PriceOfProduct,
                 CustomerId = lines.CustomerId
             };
         }
@@ -188,12 +185,11 @@ namespace StoreDL
             return _context.OrderDetails.Select(
                 orders => new Order()
                 {
-                    ID = orders.OrderDetailsId,
-                    OrderID = orders.OrderId,
-                    ProductID = orders.ProductId,
-                    QTY = orders.ProductQty,
-                    Cost = orders.PriceOfProduct,
-                    Location = orders.StoreLocation,
+                    OrderID = orders.OrderID,
+                    ProductID = orders.ProductID,
+                    QTY = orders.QTY,
+                    Cost = orders.Cost,
+                    Location = orders.Location,
                     Total = orders.Total,
                     CustomerId = orders.CustomerId
                 }

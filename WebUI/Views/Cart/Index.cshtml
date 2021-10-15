@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Models.CProduct>
 
 @{
-    ViewData["Title"] = "BuyMe";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,7 +12,9 @@
 </style>
 <body style="background-color: rgb(236,176,56); ">
 
-    <h1>Products</h1>
+
+    <h1>Cart</h1>
+
     <table>
         <tr>
             <th>
@@ -49,12 +51,11 @@
                 <th>
                     @Html.DisplayFor(modell => item.InventoryLocation)
                 </th>
-                <th>
-                    @Html.ActionLink("Add To Cart", "middleMan", new { id = item.ProductId})
-                </th>
             </tr>
         }
 
     </table>
-
+    <form asp-action="CompleteOrder">
+        <input type="submit" value="Complete Order" class="btn btn-primary" />
+    </form>
 </body>

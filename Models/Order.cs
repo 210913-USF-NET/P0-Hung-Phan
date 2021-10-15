@@ -34,24 +34,16 @@ namespace Models
             this.Location = location;
             this.Total = total;
             this.CustomerId = customerId;
-            this.CAddress = address;
         }
 
         public int ID {get; set;}
-        public int OrderID {get; set;}
-        public int OrderId { get; set; }
-        public int ProductID {get; set;}
-        public int ProductId { get; set; }
+        public int OrderID { get; set; }
+        public int ProductID { get; set; }
         public int QTY {get; set;}
         public decimal Cost {get; set;}
         public string Location {get; set;}
         public decimal Total {get; set;}
         public int CustomerId {get; set;} 
-        public string CAddress { get; }
-        public int ProductQty { get; set; }
-        public decimal PriceOfProduct { get; set; }
-        public string StoreLocation { get; set; }
-        public int OrderDetailsId { get; set; }
 
         public override string ToString()
         {
