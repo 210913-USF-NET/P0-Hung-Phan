@@ -7,29 +7,25 @@
 
 <style>
     body {
+        background-image: url('https://cdn.wallpapersafari.com/55/12/hizK5X.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
         font-family: 'Lucida Handwriting';
     }
 </style>
-<body style="background-color: rgb(236,176,56); ">
 
 
     <h1>Cart</h1>
 
     <table>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductId)
-            </th>
-            <th>
+            <th style="padding-right:70px">
                 @Html.DisplayNameFor(model => model.ProductName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Stock)
-            </th>
-            <th>
+            <th style="padding-right:50px">
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            <th>
+            <th style="padding-right:50px">
                 @Html.DisplayNameFor(model => model.InventoryLocation)
             </th>
         </tr>
@@ -37,13 +33,7 @@
         {
             <tr>
                 <th>
-                    @Html.DisplayFor(modell => item.ProductId)
-                </th>
-                <th>
                     @Html.DisplayFor(modell => item.ProductName)
-                </th>
-                <th>
-                    @Html.DisplayFor(modell => item.Stock)
                 </th>
                 <th>
                     @Html.DisplayFor(modell => item.Price)
@@ -58,4 +48,3 @@
     <form asp-action="CompleteOrder">
         <input type="submit" value="Complete Order" class="btn btn-primary" />
     </form>
-</body>

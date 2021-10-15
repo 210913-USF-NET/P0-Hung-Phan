@@ -38,7 +38,7 @@ namespace WebUI.Controllers
                 _bl.changeStock(i);
             }
             NewCart.shoppingCart.Clear();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Account");
         }
     }
 }

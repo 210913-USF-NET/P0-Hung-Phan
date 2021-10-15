@@ -49,22 +49,16 @@ namespace WebUI.Controllers
 
         public ActionResult BuyMe()
         {
+            var checkForUser = HttpContext.Request.Cookies["Id"];
+            if (checkForUser != null)
+            {
+                ViewData["user"] = "yes";
+            }
             var thisone = HttpContext.Request.Cookies["Id"];
             List<CProduct> allProduct = _bl.ListProducts();
             allProduct = allProduct.OrderBy(q => q.ProductId).ToList();
             return View(allProduct);
         }
-
-        //public ActionResult BuyMe(LineItems item)
-        //{
-        //    int ProductId = item.ProductId;
-        //    int ProductQty = item.ProductQty;
-        //    decimal PriceOfProduct = item.PriceOfProduct;
-        //    string StoreLocation = item.StoreLocation;
-        //    decimal Total = item.ProductQty * item.PriceOfProduct;
-
-        //    return View();
-        //}
 
         public ActionResult middleMan(int id)
         {
@@ -82,8 +76,9 @@ namespace WebUI.Controllers
                 var item = _bl.GetProductById(productID);
                 decimal currentPrice = item.Price;
                 var currentInventory = item.InventoryLocation;
+                var currentName = item.ProductName;
 
-                NewCart.shoppingCart.Add(new CProduct(productID, currentPrice, currentInventory));
+                NewCart.shoppingCart.Add(new CProduct(productID, currentPrice, currentInventory, currentName));
                 return RedirectToAction(nameof(BuyMe));
 
             }catch

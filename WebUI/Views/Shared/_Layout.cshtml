@@ -1,4 +1,7 @@
-﻿
+﻿@{ 
+    string signedUser = (string)ViewData["user"];
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +17,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-danger border-bottom box-shadow mb-3">
             <div class="container">
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-nowrap">
+                    <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index"><img src="https://avatars.githubusercontent.com/u/90344712?s=400&u=281b84a3ca0d7d92987b9f55ca9225373b7f17ee&v=4" alt="" width="45" height="45" /></a>
                         </li>
@@ -22,6 +25,8 @@
                 </div>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    @if(signedUser == "yes")
+                    {           
                     <ul class="navbar-nav ml-auto flex-nowrap">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="OrderHistory">Order History</a>
@@ -33,6 +38,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
                         </li>
                     </ul>
+                    }
                 </div>
             </div>
         </nav>
