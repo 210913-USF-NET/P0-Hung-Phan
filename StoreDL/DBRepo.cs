@@ -200,5 +200,10 @@ namespace StoreDL
             ).ToList();
         }
 
+        public CProduct GetProductById(int id)
+        {
+            return _context.Products.FirstOrDefault(p => p.ProductId == id);
+        }
+
     }
 }

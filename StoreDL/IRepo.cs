@@ -19,5 +19,7 @@ namespace StoreDL
         LineItems createLineItem(LineItems item);
 
         List<Order> OrderHistory();
+
+        CProduct GetProductById(int id);
     }
 }

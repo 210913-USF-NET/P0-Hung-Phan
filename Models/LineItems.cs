@@ -19,6 +19,14 @@ namespace Models
             this.ProductQty = qty;
             this.CustomerId = cid;
         }
+        public LineItems(int pid, int qty, decimal price, decimal total, string loc)
+        {
+            this.ProductId = pid;
+            this.ProductQty = qty;
+            this.PriceOfProduct = price;
+            this.Total = total;
+            this.StoreLocation = loc;
+        }
 
         //Constructor overloading
         public LineItems(int oid, int pid, int qty,decimal price, string loca, decimal total, int cid){

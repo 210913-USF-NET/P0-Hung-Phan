@@ -13,57 +13,48 @@
 <body style="background-color: rgb(236,176,56); ">
 
     <h1>Products</h1>
-
     <table>
         <tr>
             <th>
-                Product Id
+                @Html.DisplayNameFor(model => model.ProductId)
             </th>
             <th>
-                Product Name
+                @Html.DisplayNameFor(model => model.ProductName)
             </th>
             <th>
-                Qty
+                @Html.DisplayNameFor(model => model.Stock)
             </th>
             <th>
-                Price
+                @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
-                Location
-            </th>
-            <th>
-                How Many?
-            </th>
-            <th>
-                Buy Me
+                @Html.DisplayNameFor(model => model.InventoryLocation)
             </th>
         </tr>
         @foreach (var item in Model)
         {
             <tr>
                 <th>
-                    @item.ProductId
+                    @Html.DisplayFor(modell => item.ProductId)
                 </th>
                 <th>
-                    @item.ProductName
+                    @Html.DisplayFor(modell => item.ProductName)
                 </th>
                 <th>
-                    @item.Stock
+                    @Html.DisplayFor(modell => item.Stock)
                 </th>
                 <th>
-                    @item.Price
+                    @Html.DisplayFor(modell => item.Price)
                 </th>
                 <th>
-                    @item.InventoryLocation
+                    @Html.DisplayFor(modell => item.InventoryLocation)
                 </th>
                 <th>
-                    <input type="number" name="@item.ProductId" min="0" max="@item.Stock" />
-                </th>
-                <th>
-                    <a asp-controller="Product" asp-action="Cart" asp-route-id="@item.ProductId">Buy Now</a>
+                    @Html.ActionLink("Add To Cart", "middleMan", new { id = item.ProductId})
                 </th>
             </tr>
         }
 
     </table>
+
 </body>

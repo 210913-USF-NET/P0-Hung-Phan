@@ -43,5 +43,10 @@ namespace StoreBL
         {
             _repo.createLineItem(item);
         }
+
+        public CProduct GetProductById(int id)
+        {
+            return _repo.GetProductById(id);
+        }
     }
 }

@@ -1,0 +1,76 @@
+﻿@model Models.CProduct
+
+@{
+    ViewData["Title"] = "middleMan";
+}
+
+<style>
+    body {
+        font-family: 'Brush Script MT', cursive;
+    }
+</style>
+<body style="background-color: rgb(236,176,56); ">
+
+
+    <h1>middleMan</h1>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stock)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InventoryLocation)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.ProductDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.Stock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.InventoryLocation)
+                </td>
+                <th>
+                    <form asp-action="middleMan">
+                        <input type="submit" value="Add To Cart" class="btn btn-primary" />
+                    </form>
+                </th>
+            </tr>
+
+        </tbody>
+    </table>

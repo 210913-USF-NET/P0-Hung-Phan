@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using StoreBL;
 using Models;
+using WebUI.Models;
 
 
 namespace WebUI.Controllers
@@ -29,8 +30,6 @@ namespace WebUI.Controllers
             List<LineItems> items = _bl.LinesOfItems();
             return View(items);
         }
-
-
 
         // GET: ProductController/Create
 
@@ -104,5 +103,43 @@ namespace WebUI.Controllers
             return View(allProduct);
         }
 
+        //public ActionResult BuyMe(LineItems item)
+        //{
+        //    int ProductId = item.ProductId;
+        //    int ProductQty = item.ProductQty;
+        //    decimal PriceOfProduct = item.PriceOfProduct;
+        //    string StoreLocation = item.StoreLocation;
+        //    decimal Total = item.ProductQty * item.PriceOfProduct;
+
+        //    return View();
+        //}
+
+        public ActionResult middleMan(int id)
+        {
+            HttpContext.Response.Cookies.Append("PID", id.ToString());
+            //HttpContext.Response.Cookies.Append("Money", price.ToString());
+            //HttpContext.Response.Cookies.Append("where", loc);
+            return View(_bl.GetProductById(id));
+        }
+
+
+        [HttpPost]
+        public ActionResult middleMan()
+        {
+            try
+            {
+                int productID = Int32.Parse(HttpContext.Request.Cookies["PID"]);
+                var item = _bl.GetProductById(productID);
+                //decimal currentPrice = Int32.Parse(HttpContext.Request.Cookies["currentPrice"]);
+                //var currentInventory = HttpContext.Request.Cookies["currentLocation"];
+
+                //NewCart.shoppingCart.Add(new CProduct(productID));
+                return View();
+
+            }catch
+            {
+                return View();
+            }
+        }
     }
 }

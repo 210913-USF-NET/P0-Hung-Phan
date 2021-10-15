@@ -14,6 +14,13 @@ namespace Models
             this.ProductId = id;
         }
 
+        public CProduct(int pid, decimal price, string loc)
+        {
+            this.ProductId = pid;
+            this.Price = price;
+            this.InventoryLocation = loc;
+        }
+
         //Constructor overloading   
         public CProduct(int id, string name, string writting,
         decimal price, string home, int stock, string sort) {
