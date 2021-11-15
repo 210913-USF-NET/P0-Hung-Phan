@@ -3,8 +3,6 @@ Earl of Tea Tea Shop
 Overview:
 Earl of Tea Tea Shop is a small tea shop wanting to get their products out to more people. Tea can warm you up in the morning or cool you down on a hot summer day. Earl of Tea wants to spread the comfort and refreshness of what their tea can bring to people.
 
-https://teashopp1.azurewebsites.net/
-
 Tech Stack: 
 C#
 EF Core
